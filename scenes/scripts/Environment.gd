@@ -1,4 +1,5 @@
 extends TileMap
+class_name RLEnvironment
 
 # --------------------------------------------------------------------------------------------------
 # CONSTANTS
@@ -115,7 +116,11 @@ func _iterate_algorithm():
 	iterations += 1
 	
 	environment_step()
-	learner.rl_step(trial[-2][0], trial[-2][1], trial[-1][0], trial[-1][2])
+	
+	learner.rl_step(trial[-2][0], trial[-2][1], trial[-1][0], trial[-1][2], is_terminal(trial[-1][0]))
+	
+	if is_terminal([-1][0]):
+		reset_episode()
 
 
 # --------------------------------------------------------------------------------------------------
@@ -201,3 +206,9 @@ func move_agent_to(pos: Vector2):
 	
 	if not OS.is_debug_build():
 		agent_sprite.offset += agent_sprite.position - pos
+
+
+# Resets episode
+func reset_episode():
+	trial = []
+	# TODO: Implement cumulative reward CSV generation

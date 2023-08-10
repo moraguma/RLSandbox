@@ -1,4 +1,4 @@
 class_name ActionResults
 
-func get_result(t: TileMap, s: Vector2i, a:Vector2i) -> Array:
+func get_result(e: RLEnvironment, s: Vector2i, a:Vector2i) -> Array:
 	return []

@@ -3,8 +3,7 @@ class_name Learner
 # Math -------------------------------------------------------------------------
 const e = 2.71828
 
-# Past state, past action, current state, reward
-func rl_step(ps: Vector2i, pa: Vector2i, cs: Vector2i, r: float) -> void:
+func rl_step(trial: Array, is_terminal: bool) -> void:
 	pass
 
 # Graph, current state
