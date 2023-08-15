@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgkakjgj6vgoy"]
+
+[ext_resource type="PackedScene" uid="uid://cndliy0xg0m5b" path="res://scenes/Environment.tscn" id="1_vqnl8"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/action_results/SidewaysShift.gd" id="2_wxo6u"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/resetters/RandomResetter.gd" id="3_332lr"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/rewarders/FixedRewarder.gd" id="4_va860"]
+[ext_resource type="Script" path="res://scenes/scripts/rl/learners/AdaptiveDynamicProgramming.gd" id="5_qxwfq"]
+
+[node name="Environment" instance=ExtResource("1_vqnl8")]
+action_results_script = ExtResource("2_wxo6u")
+resetter_script = ExtResource("3_332lr")
+rewarder_script = ExtResource("4_va860")
+learner_script = ExtResource("5_qxwfq")
+headless = true
