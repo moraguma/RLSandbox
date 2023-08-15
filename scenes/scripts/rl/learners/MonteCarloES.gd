@@ -6,13 +6,15 @@ var state_action_frequency = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
 var episodes_to_zero_epsilon = 1000
-var iterations = -1
+var episodes = 0
 
 
 # trial is a list of [s, a, r]
 func rl_step(trial: Array, is_terminal: bool) -> void:
 	# Will only run is update if the episode has ended
 	if is_terminal:
+		episodes += 1
+		
 		# Prediction
 		var G = 0
 		for i in range(len(trial) - 2, -1, -1):
@@ -30,10 +32,8 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 # Graph, current state
 # g[state][action] is a list of [resulting state, probability]
 func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
-	iterations += 1
-	
 	var r = randf()
-	if r <= linear_decrease(starting_epsilon, episodes_to_zero_epsilon, iterations):
+	if r <= linear_decrease(starting_epsilon, episodes_to_zero_epsilon, episodes):
 		return ax[randi() % len(ax)]
 	
 	var max_v = -INF

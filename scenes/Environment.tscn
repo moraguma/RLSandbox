@@ -34,7 +34,6 @@ sources/0 = SubResource("TileSetAtlasSource_7pnhd")
 sources/1 = SubResource("TileSetAtlasSource_0lr5w")
 
 [node name="Environment" type="TileMap"]
-position = Vector2(32, 0)
 tile_set = SubResource("TileSet_rs4np")
 format = 2
 layer_0/name = "objects"
