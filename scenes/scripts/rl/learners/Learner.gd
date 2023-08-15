@@ -7,7 +7,7 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 	pass
 
 # Graph, current state
-func select_action(g: Dictionary, s: Vector2i) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
 	return Vector2i(0, 0)
 
 # --------------------------------------------------------------------------------------------------
@@ -23,3 +23,7 @@ func dot(a, b):
 		r += a[i] * b[i]
 	
 	return r
+
+# Start, iterations to zero, iterations
+func linear_decrease(s: float, r: float, i: int) -> float:
+	return max(0, s - s * i/r)

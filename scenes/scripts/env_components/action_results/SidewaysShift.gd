@@ -2,7 +2,7 @@ extends ActionResults
 
 @export_range(0.0, 0.5) var chance = 0.1
 
-func get_result(t: TileMap, s: Vector2i, a:Vector2i) -> Array:
+func get_result(e: RLEnvironment, s: Vector2i, a:Vector2i) -> Array:
 	return [[counter_clockwise_shift(a), chance], [clockwise_shift(a), chance], [a, 1 - 2 * chance]]
 
 

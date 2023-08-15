@@ -47,15 +47,14 @@ const MAX_FRAMES_PER_ITERATION = 60
 
 # Learning ---------------------------------------------------------------------
 const MAX_ITERATIONS = 10000
+const MAX_STEPS = 50
 
 # --------------------------------------------------------------------------------------------------
 # VARIABLES
 # --------------------------------------------------------------------------------------------------
 
 # Environment ------------------------------------------------------------------
-@export var start_random = true
 var graph = {}
-var done = false
 
 var trial = [] # List of [s, a, r]
 var iterations = 0
@@ -75,7 +74,6 @@ var iterations = 0
 
 # Rendering --------------------------------------------------------------------
 @export var headless = true
-@export var keep_running = true
 var frames_passed = 0
 
 # --------------------------------------------------------------------------------------------------
@@ -102,13 +100,11 @@ func _ready():
 func _process(delta):
 	agent_sprite.offset = lerp(agent_sprite.offset, AGENT_SPRITE_DEFAULT_OFFSET, AGENT_SPRITE_LERP_WEIGHT)
 	
-	if not done or keep_running:
-		frames_passed += 1
+	frames_passed += 1
+	if frames_passed >= MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value:
+		frames_passed = 0
 		
-		if frames_passed >= MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value:
-			frames_passed = 0
-			
-			done = _iterate_algorithm()
+		_iterate_algorithm()
 
 
 # Calls function for the chosen RL algorithm
@@ -117,9 +113,9 @@ func _iterate_algorithm():
 	
 	environment_step()
 	
-	learner.rl_step(trial[-2][0], trial[-2][1], trial[-1][0], trial[-1][2], is_terminal(trial[-1][0]))
+	learner.rl_step(trial, is_terminal(trial[-1][0]))
 	
-	if is_terminal([-1][0]):
+	if is_terminal(trial[-1][0]):
 		reset_episode()
 
 
@@ -154,42 +150,32 @@ func get_movement_result(start, action):
 
 # Checks if this state is terminal
 func is_terminal(state):
-	return get_cell_atlas_coords(OBJECT_LAYER, state) in [WIN_TILE, LOSE_TILE]
+	return get_cell_atlas_coords(OBJECT_LAYER, state) in [WIN_TILE, LOSE_TILE] or len(trial) >= MAX_STEPS
 
 
 # Takes a step in a trial according to its learner. If a trial isn't
 # running, places the agent in a random position.
 func environment_step():
-	var past_state
-	var past_action
-	var current_state
-	var reward_signal
-	
 	if len(trial) == 0:
-		past_state = null
-		past_action = null
-		
-		current_state = resetter.get_initial_tile(graph)
-		reward_signal = rewarder.get_reward(self, current_state)
-		
-		move_to(current_state)
+		move_to(resetter.get_initial_tile(graph))
 	else:
-		trial[-1][1] = learner.select_action(graph, current_state)
+		var past_state = trial[-1][0]
+		trial[-1][1] = learner.select_action(past_state, action_list)
 		
-		past_state = trial[-1][0]
-		past_action = trial[-1][1]
-		
-		take_step(past_state, past_action)
+		take_step(past_state, trial[-1][1])
 
 
 # Takes a step considering the specified action and returns the result based on 
 # the random resulting state
 func take_step(state, action):
+	set_cell(OBJECT_LAYER, state, OBJECT_ID, ACTION_TO_TILE[action])
+	
 	var r = randf()
 	
 	for result_probability in graph[state][action]:
 		if r <= result_probability[1]:
-			move_to(get_movement_result(state, result_probability[0]))
+			move_to(result_probability[0])
+			return
 		r -= result_probability[1]
 
 

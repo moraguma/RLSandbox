@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh8v30nl1ou"]
+
+[ext_resource type="PackedScene" uid="uid://cndliy0xg0m5b" path="res://scenes/Environment.tscn" id="1_mok62"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/action_results/SidewaysShift.gd" id="2_3o1mg"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/resetters/RandomResetter.gd" id="3_g5vti"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/rewarders/FixedRewarder.gd" id="4_pbgw6"]
+[ext_resource type="Script" path="res://scenes/scripts/rl/learners/MonteCarloES.gd" id="5_27ur2"]
+
+[node name="Environment" instance=ExtResource("1_mok62")]
+action_results_script = ExtResource("2_3o1mg")
+resetter_script = ExtResource("3_g5vti")
+rewarder_script = ExtResource("4_pbgw6")
+learner_script = ExtResource("5_27ur2")
