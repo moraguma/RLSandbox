@@ -5,7 +5,7 @@ var state_action_value = {}
 var state_action_frequency = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
-var episodes_to_zero_epsilon = 1000
+var episodes_to_zero_epsilon = 200
 var episodes = 0
 
 

@@ -39,7 +39,7 @@ const MAX_V = 7
 
 # Agent data -------------------------------------------------------------------
 const AGENT_SPRITE_DEFAULT_OFFSET = Vector2(0, -32)
-const AGENT_SPRITE_LERP_WEIGHT = 0.3
+const AGENT_SPRITE_LERP_WEIGHT = 0.5
 
 # Rendering --------------------------------------------------------------------
 const MIN_FRAMES_PER_ITERATION = 1
@@ -185,10 +185,8 @@ func move_to(state):
 
 func move_agent_to(pos: Vector2):
 	pos += Vector2(1, 1) * CELL_SIZE / 2
+	agent_sprite.offset += agent_sprite.position - pos
 	agent_sprite.position = pos
-	
-	if not OS.is_debug_build():
-		agent_sprite.offset += agent_sprite.position - pos
 
 
 # Resets episode
