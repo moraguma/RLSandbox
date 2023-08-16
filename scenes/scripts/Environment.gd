@@ -46,7 +46,7 @@ const MIN_FRAMES_PER_ITERATION = 1
 const MAX_FRAMES_PER_ITERATION = 60
 
 # Learning ---------------------------------------------------------------------
-const MAX_ITERATIONS = 10000
+const MAX_EPISODES = 300
 const MAX_STEPS = 50
 
 # --------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ const MAX_STEPS = 50
 var graph = {}
 
 var trial = [] # List of [s, a, r]
-var iterations = 0
+var episodes = 0
 
 # Components -------------------------------------------------------------------
 @export var action_results_script: GDScript
@@ -93,7 +93,7 @@ func _ready():
 	build_graph()
 	
 	if headless:
-		while iterations < MAX_ITERATIONS:
+		while episodes < MAX_EPISODES:
 			_iterate_algorithm()
 
 
@@ -109,13 +109,12 @@ func _process(delta):
 
 # Calls function for the chosen RL algorithm
 func _iterate_algorithm():
-	iterations += 1
-	
 	environment_step()
 	
 	learner.rl_step(trial, is_terminal(trial[-1][0]))
 	
 	if is_terminal(trial[-1][0]):
+		episodes += 1
 		reset_episode()
 
 

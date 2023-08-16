@@ -4,4 +4,5 @@ This repository includes simple implementations of classic RL algorithms, as wel
 
 ### Implemented algorithms
 
+- Adaptive Dynamic Programming
 - Monte Carlo ES
