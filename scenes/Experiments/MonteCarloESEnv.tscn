@@ -11,4 +11,3 @@ action_results_script = ExtResource("2_3o1mg")
 resetter_script = ExtResource("3_g5vti")
 rewarder_script = ExtResource("4_pbgw6")
 learner_script = ExtResource("5_27ur2")
-headless = true

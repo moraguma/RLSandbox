@@ -9,7 +9,7 @@ var m = {}
 var q = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
-var episodes_to_zero_epsilon = 300
+var episodes_to_zero_epsilon = 20
 var episodes = 0
 
 # trial is a list of [s, a, r]

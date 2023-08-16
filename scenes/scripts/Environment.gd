@@ -46,7 +46,6 @@ const MIN_FRAMES_PER_ITERATION = 1
 const MAX_FRAMES_PER_ITERATION = 60
 
 # Learning ---------------------------------------------------------------------
-const MAX_EPISODES = 300
 const MAX_STEPS = 50
 
 # --------------------------------------------------------------------------------------------------
@@ -73,7 +72,7 @@ var episodes = 0
 @onready var learner: Learner = learner_script.new()
 
 # Rendering --------------------------------------------------------------------
-@export var headless = true
+@export var headless_episodes = 0
 var frames_passed = 0
 
 # --------------------------------------------------------------------------------------------------
@@ -92,9 +91,8 @@ func _ready():
 	
 	build_graph()
 	
-	if headless:
-		while episodes < MAX_EPISODES:
-			_iterate_algorithm()
+	while episodes < headless_episodes:
+		_iterate_algorithm()
 
 
 func _process(delta):
