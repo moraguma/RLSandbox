@@ -21,7 +21,6 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 		var ns = trial[-1][0]
 		var a = trial[-2][1]
 		var r =  trial[-1][2]
-		
 		na = select_action(ns, past_ax)
 		
 		init_q(q, s, a, false)

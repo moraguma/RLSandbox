@@ -6,7 +6,7 @@ var gamma = 0.9
 var starting_epsilon = 0.9
 var episodes_to_zero_epsilon = 200
 var starting_alpha = 0.1
-var episodes_to_zero_alpha = 200
+var episodes_to_zero_alpha = 250
 var episodes = 0
 
 var past_ax

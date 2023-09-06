@@ -32,11 +32,9 @@ func _process(delta):
 	if initialized:
 		if Input.is_action_just_pressed("ui_accept"):
 			show()
+			chart.queue_redraw()
 		if Input.is_action_just_released("ui_accept"):
 			hide()
-		
-		if visible:
-			chart.queue_redraw()
 
 
 func add_function(f: Function):
