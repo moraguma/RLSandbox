@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bktot57py6gkk"]
+
+[ext_resource type="Script" path="res://scenes/scripts/DataVisualizer.gd" id="1_ofuxw"]
+[ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="2_82kbg"]
+
+[node name="DataVisualizer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+script = ExtResource("1_ofuxw")
+
+[node name="Chart" parent="." instance=ExtResource("2_82kbg")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 960.0
+offset_bottom = 544.0

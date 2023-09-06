@@ -14,10 +14,18 @@ config/name="RL Playground"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://resources/sprites/agent.png"
 
+[autoload]
+
+DataVisualizer="*res://scenes/DataVisualizer.tscn"
+
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/easy_charts/plugin.cfg")
 
 [rendering]
 

@@ -48,6 +48,10 @@ const MAX_FRAMES_PER_ITERATION = 60
 # Learning ---------------------------------------------------------------------
 const MAX_STEPS = 50
 
+# Visualization ----------------------------------------------------------------
+const EPISODES_TO_AVERAGE = 20
+const MAX_DATA_POINTS = 1000
+
 # --------------------------------------------------------------------------------------------------
 # VARIABLES
 # --------------------------------------------------------------------------------------------------
@@ -74,6 +78,13 @@ var episodes = 0
 # Rendering --------------------------------------------------------------------
 @export var headless_episodes = 0
 var frames_passed = 0
+
+# Visualization ----------------------------------------------------------------
+var cummulative_reward = 0
+var running_total_reward = 0
+var running_episodes = 0
+var g_function: Function = null
+var averaged_function: Function = null
 
 # --------------------------------------------------------------------------------------------------
 # NODES
@@ -108,11 +119,11 @@ func _process(delta):
 # Calls function for the chosen RL algorithm
 func _iterate_algorithm():
 	environment_step()
+	cummulative_reward += trial[-1][2]
 	
 	learner.rl_step(trial, is_terminal(trial[-1][0]))
 	
 	if is_terminal(trial[-1][0]):
-		episodes += 1
 		reset_episode()
 
 
@@ -192,4 +203,40 @@ func move_agent_to(pos: Vector2):
 # Resets episode
 func reset_episode():
 	trial = []
-	# TODO: Implement cumulative reward CSV generation
+	episodes += 1
+	
+	update_visualization()
+	
+	cummulative_reward = 0
+
+
+func update_visualization():
+	if g_function == null:
+		g_function = Function.new([episodes], [cummulative_reward], "Reward",
+			{ color = Color("#302cb0"),
+				marker = Function.Marker.CIRCLE,
+				type = Function.Type.LINE,
+				interpolation = Function.Interpolation.STAIR })
+		DataVisualizer.add_function(g_function)
+	else:
+		g_function.add_point(episodes, cummulative_reward)
+		if g_function.count_points() > MAX_DATA_POINTS:
+			g_function.remove_point(0)
+	
+	running_total_reward += cummulative_reward
+	running_episodes += 1
+	if running_episodes >= EPISODES_TO_AVERAGE:
+		if averaged_function == null:
+			averaged_function = Function.new([episodes], [running_total_reward / running_episodes], "Averaged reward",
+				{ color = Color("#d91136"),
+					marker = Function.Marker.CIRCLE,
+					type = Function.Type.LINE,
+					interpolation = Function.Interpolation.LINEAR })
+			DataVisualizer.add_function(averaged_function)
+		else:
+			averaged_function.add_point(episodes, running_total_reward / running_episodes)
+			if averaged_function.count_points() / EPISODES_TO_AVERAGE > MAX_DATA_POINTS:
+				averaged_function.remove_point(0)
+		
+		running_total_reward = 0
+		running_episodes = 0
