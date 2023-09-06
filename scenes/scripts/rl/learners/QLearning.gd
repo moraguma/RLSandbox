@@ -20,7 +20,7 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 		var ns = trial[-1][0]
 		var a = trial[-2][1]
 		var r =  trial[-1][2]
-		var na = get_best_action(s, past_ax)
+		var na = get_best_action(ns, past_ax)
 		
 		init_q(q, s, a, false)
 		init_q(q, ns, na, is_terminal)

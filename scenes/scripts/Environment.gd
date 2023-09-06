@@ -103,7 +103,7 @@ func _ready():
 	build_graph()
 	
 	while episodes < headless_episodes:
-		_iterate_algorithm()
+		_iterate_algorithm() 
 
 
 func _process(delta):
@@ -235,7 +235,7 @@ func update_visualization():
 			DataVisualizer.add_function(averaged_function)
 		else:
 			averaged_function.add_point(episodes, running_total_reward / running_episodes)
-			if averaged_function.count_points() / EPISODES_TO_AVERAGE > MAX_DATA_POINTS:
+			if averaged_function.count_points() * EPISODES_TO_AVERAGE > MAX_DATA_POINTS:
 				averaged_function.remove_point(0)
 		
 		running_total_reward = 0
