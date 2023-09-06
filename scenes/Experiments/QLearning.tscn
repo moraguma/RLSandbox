@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb6sei8ulliod"]
+
+[ext_resource type="PackedScene" uid="uid://cndliy0xg0m5b" path="res://scenes/Environment.tscn" id="1_0sj33"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/action_results/SidewaysShift.gd" id="2_vwd4q"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/resetters/RandomResetter.gd" id="3_uwmfg"]
+[ext_resource type="Script" path="res://scenes/scripts/env_components/rewarders/FixedRewarder.gd" id="4_x72b8"]
+[ext_resource type="Script" path="res://scenes/scripts/rl/learners/QLearning.gd" id="5_p8am5"]
+
+[node name="Environment" instance=ExtResource("1_0sj33")]
+layer_0/tile_data = PackedInt32Array(65540, 65537, 3, 196612, 65537, 2)
+action_results_script = ExtResource("2_vwd4q")
+resetter_script = ExtResource("3_uwmfg")
+rewarder_script = ExtResource("4_x72b8")
+learner_script = ExtResource("5_p8am5")
+headless_episodes = 1000
