@@ -56,6 +56,9 @@ const MAX_DATA_POINTS = 1000
 # VARIABLES
 # --------------------------------------------------------------------------------------------------
 
+# Builder ----------------------------------------------------------------------
+var running = false
+
 # Environment ------------------------------------------------------------------
 var graph = {}
 
@@ -64,16 +67,16 @@ var episodes = 0
 
 # Components -------------------------------------------------------------------
 @export var action_results_script: GDScript
-@onready var action_results: ActionResults = action_results_script.new()
+var action_results: ActionResults
 
 @export var resetter_script: GDScript
-@onready var resetter: Resetter = resetter_script.new()
+var resetter: Resetter
 
 @export var rewarder_script: GDScript
-@onready var rewarder: Rewarder = rewarder_script.new()
+var rewarder: Rewarder
 
 @export var learner_script: GDScript
-@onready var learner: Learner = learner_script.new()
+var learner: Learner
 
 # Rendering --------------------------------------------------------------------
 @export var headless_episodes = 0
@@ -91,29 +94,26 @@ var averaged_function: Function = null
 # --------------------------------------------------------------------------------------------------
 
 @onready var agent_sprite = $Agent
-@onready var speed_slider = $Speed
+@onready var simulation_speed = $SimulationSpeed
+@onready var speed_slider = $Slider
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
 # --------------------------------------------------------------------------------------------------
 
 func _ready():
-	randomize()
-	
-	build_graph()
-	
-	while episodes < headless_episodes:
-		_iterate_algorithm() 
+	start()
 
 
 func _process(delta):
-	agent_sprite.offset = lerp(agent_sprite.offset, AGENT_SPRITE_DEFAULT_OFFSET, AGENT_SPRITE_LERP_WEIGHT)
-	
-	frames_passed += 1
-	if frames_passed >= MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value:
-		frames_passed = 0
+	if running:
+		agent_sprite.offset = lerp(agent_sprite.offset, AGENT_SPRITE_DEFAULT_OFFSET, AGENT_SPRITE_LERP_WEIGHT)
 		
-		_iterate_algorithm()
+		frames_passed += 1
+		if frames_passed >= MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value:
+			frames_passed = 0
+			
+			_iterate_algorithm()
 
 
 # Calls function for the chosen RL algorithm
@@ -128,8 +128,39 @@ func _iterate_algorithm():
 
 
 # --------------------------------------------------------------------------------------------------
+# BUILDER
+# --------------------------------------------------------------------------------------------------
+func start():
+	running = true
+	
+	randomize()
+	
+	load_scripts()
+	build_graph()
+	
+	while episodes < headless_episodes:
+		_iterate_algorithm()
+	
+	agent_sprite.show()
+	simulation_speed.show()
+	speed_slider.show()
+
+
+func stop():
+	running = false
+	
+	simulation_speed.hide()
+	speed_slider.hide()
+
+
+# --------------------------------------------------------------------------------------------------
 # ENVIRONMENT
 # --------------------------------------------------------------------------------------------------
+func load_scripts():
+	action_results = action_results_script.new()
+	resetter = resetter_script.new()
+	rewarder = rewarder_script.new()
+	learner = learner_script.new()
 
 
 # Builds the MDP that represents the problem
@@ -217,7 +248,7 @@ func update_visualization():
 				marker = Function.Marker.CIRCLE,
 				type = Function.Type.LINE,
 				interpolation = Function.Interpolation.STAIR })
-		DataVisualizer.add_function(g_function)
+		DataVisualizer.reset_functions(g_function)
 	else:
 		g_function.add_point(episodes, cummulative_reward)
 		if g_function.count_points() > MAX_DATA_POINTS:

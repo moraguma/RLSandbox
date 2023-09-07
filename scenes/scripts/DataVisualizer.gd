@@ -48,5 +48,5 @@ func add_function(f: Function):
 
 
 func reset_functions(f: Function):
-	fx = [f]
-	chart.load_functions(fx)
+	fx = []
+	add_function(f)
