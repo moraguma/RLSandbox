@@ -13,10 +13,3 @@ resetter_script = ExtResource("3_uwmfg")
 rewarder_script = ExtResource("4_x72b8")
 learner_script = ExtResource("5_p8am5")
 headless_episodes = 250
-
-[node name="Slider" parent="SimulationSpeed" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 288.0
-offset_bottom = 64.0

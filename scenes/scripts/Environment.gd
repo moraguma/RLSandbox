@@ -244,7 +244,7 @@ func reset_episode():
 func update_visualization():
 	if g_function == null:
 		g_function = Function.new([episodes], [cummulative_reward], "Reward",
-			{ color = Color("#302cb0"),
+			{ color = Color("#1a1817"),
 				marker = Function.Marker.CIRCLE,
 				type = Function.Type.LINE,
 				interpolation = Function.Interpolation.STAIR })
@@ -259,7 +259,7 @@ func update_visualization():
 	if running_episodes >= EPISODES_TO_AVERAGE:
 		if averaged_function == null:
 			averaged_function = Function.new([episodes], [running_total_reward / running_episodes], "Averaged reward",
-				{ color = Color("#d91136"),
+				{ color = Color("#ffb303"),
 					marker = Function.Marker.CIRCLE,
 					type = Function.Type.LINE,
 					interpolation = Function.Interpolation.LINEAR })

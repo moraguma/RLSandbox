@@ -13,11 +13,12 @@ var initialized = false
 
 func _ready():
 	properties = ChartProperties.new()
-	properties.colors.frame = Color("#161a1d")
+	properties.font = load("res://resources/fonts/foo.otf")
+	properties.colors.frame = Color("#d4d4d4")
 	properties.colors.background = Color.TRANSPARENT
-	properties.colors.grid = Color("#283442")
-	properties.colors.ticks = Color("#283442")
-	properties.colors.text = Color.WHITE_SMOKE
+	properties.colors.grid = Color("#524f4e")
+	properties.colors.ticks = Color("#524f4e")
+	properties.colors.text = Color("#1a1817")
 	properties.draw_bounding_box = false
 	properties.show_legend = true
 	properties.title = "Reward over time"

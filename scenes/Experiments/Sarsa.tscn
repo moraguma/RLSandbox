@@ -13,6 +13,3 @@ resetter_script = ExtResource("3_cq2fy")
 rewarder_script = ExtResource("4_nrndl")
 learner_script = ExtResource("5_dfhue")
 headless_episodes = 200
-
-[node name="Slider" parent="SimulationSpeed" index="0"]
-layout_mode = 0
