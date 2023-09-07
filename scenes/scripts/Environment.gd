@@ -66,16 +66,9 @@ var trial = [] # List of [s, a, r]
 var episodes = 0
 
 # Components -------------------------------------------------------------------
-@export var action_results_script: GDScript
-var action_results: ActionResults
-
-@export var resetter_script: GDScript
-var resetter: Resetter
-
-@export var rewarder_script: GDScript
-var rewarder: Rewarder
-
-@export var learner_script: GDScript
+var action_results: ActionResults = preload("res://scenes/scripts/env_components/action_results/SidewaysShift.gd").new()
+var resetter: Resetter = preload("res://scenes/scripts/env_components/resetters/RandomResetter.gd").new()
+var rewarder: Rewarder = preload("res://scenes/scripts/env_components/rewarders/FixedRewarder.gd").new()
 var learner: Learner
 
 # Rendering --------------------------------------------------------------------
@@ -144,7 +137,7 @@ func start():
 	
 	randomize()
 	
-	load_scripts()
+	learner = environment_builder.get_learner()
 	build_graph()
 	reset_tilemap_policy()
 	reset_values()
@@ -167,13 +160,6 @@ func stop():
 	environment_builder.show()
 	simulation_speed.hide()
 	speed_slider.hide()
-
-
-func load_scripts():
-	action_results = action_results_script.new()
-	resetter = resetter_script.new()
-	rewarder = rewarder_script.new()
-	learner = learner_script.new()
 
 
 func reset_values():

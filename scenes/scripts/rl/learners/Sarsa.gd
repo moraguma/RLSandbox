@@ -4,9 +4,8 @@ extends Learner
 var q = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
-var episodes_to_zero_epsilon = 200
+var episodes_to_zero = 200
 var starting_alpha = 0.1
-var episodes_to_zero_alpha = 200
 var episodes = 0
 
 var past_ax
@@ -27,7 +26,7 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 		init_q(q, ns, na, is_terminal)
 		
 		var td_error = r + gamma * q[ns][na] - q[s][a]
-		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero_alpha, episodes) * td_error
+		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero, episodes) * td_error
 	if is_terminal:
 		na = null
 		episodes += 1
@@ -43,7 +42,7 @@ func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
 		return a
 	
 	var r = randf()
-	if r <= linear_decrease(starting_epsilon, episodes_to_zero_epsilon, episodes):
+	if r <= linear_decrease(starting_epsilon, episodes_to_zero, episodes):
 		return ax[randi() % len(ax)]
 	
 	var max_v = -INF

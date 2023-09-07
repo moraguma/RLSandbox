@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://csew6g5jg7uo2"]
+
+[ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="1_y7j0l"]
+[ext_resource type="Script" path="res://scenes/scripts/SelectionButton.gd" id="2_ssuha"]
+
+[node name="SelectionButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -476.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y7j0l")
+text = "aaa"
+flat = true
+script = ExtResource("2_ssuha")

@@ -24,3 +24,5 @@ offset_right = -64.0
 offset_bottom = 576.0
 
 [node name="Fold" parent="." instance=ExtResource("2_2bpl8")]
+
+[connection signal="mouse_entered" from="MouseIdentifier" to="." method="colapse"]

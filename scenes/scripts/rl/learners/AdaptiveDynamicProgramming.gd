@@ -9,7 +9,7 @@ var m = {}
 var q = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
-var episodes_to_zero_epsilon = 50
+var episodes_to_zero = 50
 var episodes = 0
 
 # trial is a list of [s, a, r]
@@ -45,7 +45,7 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 # Graph, current state
 func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
 	var r = randf()
-	if r <= linear_decrease(starting_epsilon, episodes_to_zero_epsilon, episodes):
+	if r <= linear_decrease(starting_epsilon, episodes_to_zero, episodes):
 		return ax[randi() % len(ax)]
 	
 	var max_value = -INF

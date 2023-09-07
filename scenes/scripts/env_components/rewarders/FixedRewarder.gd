@@ -1,13 +1,13 @@
 extends Rewarder
 
-const BASE_REWARD = -0.2
-const WIN_REWARD = 1.0
-const LOSE_REWARD = -1.0
+var base_reward = -0.2
+var win_reward = 1.0
+var lose_reward = -1.0
 
 func get_reward(e: RLEnvironment, s: Vector2i) -> float:
 	var object = e.get_cell_atlas_coords(e.OBJECT_LAYER, s)
 	if object == e.WIN_TILE:
-		return WIN_REWARD
+		return win_reward
 	if object == e.LOSE_TILE:
-		return LOSE_REWARD
-	return BASE_REWARD
+		return lose_reward
+	return base_reward

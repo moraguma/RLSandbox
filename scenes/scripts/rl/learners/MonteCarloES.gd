@@ -5,7 +5,7 @@ var state_action_value = {}
 var state_action_frequency = {}
 var gamma = 0.9
 var starting_epsilon = 0.9
-var episodes_to_zero_epsilon = 200
+var episodes_to_zero = 200
 var episodes = 0
 
 
@@ -33,7 +33,7 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 # g[state][action] is a list of [resulting state, probability]
 func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
 	var r = randf()
-	if r <= linear_decrease(starting_epsilon, episodes_to_zero_epsilon, episodes):
+	if r <= linear_decrease(starting_epsilon, episodes_to_zero, episodes):
 		return ax[randi() % len(ax)]
 	
 	var max_v = -INF

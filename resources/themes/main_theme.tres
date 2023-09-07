@@ -1,8 +1,12 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dpvfhrd6522wp"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dpvfhrd6522wp"]
 
 [ext_resource type="Texture2D" uid="uid://b7r8h8ks7why0" path="res://resources/sprites/slider.png" id="1_r7ht5"]
 [ext_resource type="Texture2D" uid="uid://bw8lshy4b4fpi" path="res://resources/sprites/slider_selected.png" id="2_xkn2a"]
 [ext_resource type="FontFile" uid="uid://b1wvtgv8fgr3s" path="res://resources/fonts/foo.otf" id="3_w2q5q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ne5op"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qt3gq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qofdb"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,6 +26,15 @@ expand_margin_bottom = 5.0
 [resource]
 default_font = ExtResource("3_w2q5q")
 default_font_size = 24
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 0.713726, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.713726, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 0.713726, 0, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_ne5op")
+Button/styles/pressed = SubResource("StyleBoxEmpty_qt3gq")
 HSlider/icons/grabber = ExtResource("1_r7ht5")
 HSlider/icons/grabber_highlight = ExtResource("2_xkn2a")
 HSlider/styles/slider = SubResource("StyleBoxFlat_qofdb")

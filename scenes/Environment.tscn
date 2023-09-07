@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cndliy0xg0m5b"]
+[gd_scene load_steps=17 format=3 uid="uid://cndliy0xg0m5b"]
 
 [ext_resource type="Texture2D" uid="uid://d274pyom4owob" path="res://resources/sprites/environment_tileset.png" id="1_gfq80"]
 [ext_resource type="Script" path="res://scenes/scripts/Environment.gd" id="2_m4csj"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://fu4kxuc8g80o" path="res://resources/sprites/stop.png" id="7_tosob"]
 [ext_resource type="PackedScene" uid="uid://bsr4483dtngqb" path="res://scenes/TileButton.tscn" id="8_iqjj4"]
 [ext_resource type="PackedScene" uid="uid://ejr6e87jlm2y" path="res://scenes/RightColapseMenu.tscn" id="8_tta2c"]
+[ext_resource type="PackedScene" uid="uid://cl2qfv56pe53d" path="res://scenes/LeftColapseMenu.tscn" id="9_7qvop"]
+[ext_resource type="PackedScene" uid="uid://csew6g5jg7uo2" path="res://scenes/SelectionButton.tscn" id="10_ybhui"]
+[ext_resource type="PackedScene" uid="uid://br7toatf5kgsh" path="res://scenes/EditableSlider.tscn" id="11_8emj8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7pnhd"]
 texture = ExtResource("1_gfq80")
@@ -124,6 +127,163 @@ frame = 7
 source_id = 1
 atlas_coords = Vector2i(1, 3)
 
+[node name="Environment" parent="EnvironmentBuilder" instance=ExtResource("8_tta2c")]
+
+[node name="Fold" parent="EnvironmentBuilder/Environment" index="2"]
+position = Vector2(0, 256)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Environment"]
+offset_left = 3.0
+offset_top = 360.0
+offset_right = 85.0
+offset_bottom = 392.0
+rotation = -1.5708
+theme = ExtResource("5_cutwa")
+text = "Env"
+horizontal_alignment = 1
+
+[node name="ShiftChance" parent="EnvironmentBuilder/Environment" instance=ExtResource("11_8emj8")]
+offset_left = -288.0
+offset_top = 96.0
+offset_right = -32.0
+offset_bottom = 160.0
+max_value = 0.5
+value = 0.1
+property = "Shift chance"
+
+[node name="Algorithms" parent="EnvironmentBuilder" instance=ExtResource("9_7qvop")]
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Algorithms"]
+offset_left = -4.0
+offset_top = 3.0
+offset_right = 120.0
+offset_bottom = 35.0
+rotation = 1.5708
+theme = ExtResource("5_cutwa")
+text = "Learners"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnvironmentBuilder/Algorithms"]
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 576.0
+
+[node name="ADP" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
+layout_mode = 2
+text = "ADP"
+selection = "ADP"
+
+[node name="MCES" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
+layout_mode = 2
+text = "Monte Carlo ES"
+selection = "MCES"
+
+[node name="Sarsa" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
+layout_mode = 2
+text = "SARSA"
+selection = "Sarsa"
+
+[node name="QLearning" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
+layout_mode = 2
+text = "Q Learning"
+selection = "QLearning"
+
+[node name="Rewards" parent="EnvironmentBuilder" instance=ExtResource("9_7qvop")]
+
+[node name="Fold" parent="EnvironmentBuilder/Rewards" index="2"]
+position = Vector2(0, 128)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Rewards"]
+offset_left = -4.0
+offset_top = 131.0
+offset_right = 120.0
+offset_bottom = 163.0
+rotation = 1.5708
+theme = ExtResource("5_cutwa")
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="BaseReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 288.0
+offset_bottom = 160.0
+min_value = -2.0
+max_value = 0.5
+value = -0.2
+property = "Base reward"
+
+[node name="WinReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 288.0
+offset_bottom = 288.0
+min_value = -1.0
+value = 1.0
+property = "Win reward"
+
+[node name="LoseReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 352.0
+offset_right = 288.0
+offset_bottom = 416.0
+min_value = -1.0
+value = -1.0
+property = "Lose reward"
+
+[node name="Values" parent="EnvironmentBuilder" instance=ExtResource("9_7qvop")]
+
+[node name="Fold" parent="EnvironmentBuilder/Values" index="2"]
+position = Vector2(0, 256)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Values"]
+offset_left = -4.0
+offset_top = 259.0
+offset_right = 120.0
+offset_bottom = 291.0
+rotation = 1.5708
+theme = ExtResource("5_cutwa")
+text = "Values
+"
+horizontal_alignment = 1
+
+[node name="Gamma" parent="EnvironmentBuilder/Values" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 288.0
+offset_bottom = 128.0
+value = 0.9
+property = "Gamma"
+
+[node name="StartingEpsilon" parent="EnvironmentBuilder/Values" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 168.0
+offset_right = 288.0
+offset_bottom = 232.0
+value = 0.9
+property = "Starting epsilon"
+
+[node name="StartingAlpha" parent="EnvironmentBuilder/Values" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 288.0
+offset_bottom = 336.0
+max_value = 0.5
+step = 0.01
+value = 0.1
+property = "Starting alpha"
+
+[node name="EpisodesToZero" parent="EnvironmentBuilder/Values" instance=ExtResource("11_8emj8")]
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 288.0
+offset_bottom = 440.0
+min_value = 1.0
+max_value = 500.0
+step = 1.0
+value = 200.0
+property = "Eps to converge"
+
 [node name="Play" type="TextureButton" parent="."]
 offset_left = 864.0
 offset_top = 464.0
@@ -158,3 +318,6 @@ scrollable = false
 [connection signal="pressed" from="Play" to="." method="toggle_start"]
 
 [editable path="EnvironmentBuilder/Objects"]
+[editable path="EnvironmentBuilder/Environment"]
+[editable path="EnvironmentBuilder/Rewards"]
+[editable path="EnvironmentBuilder/Values"]
