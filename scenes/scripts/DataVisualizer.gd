@@ -1,14 +1,17 @@
 extends Control
 
 
+const CHART_CLASS = preload("res://addons/easy_charts/control_charts/chart.tscn")
+
+
 var properties: ChartProperties
 var fx: Array[Function] = []
 
 
-@onready var chart: Chart = $Chart
+var chart: Chart = null
 
 
-var initialized = false
+var viewable = false
 
 
 func _ready():
@@ -30,7 +33,7 @@ func _ready():
 
 
 func _process(delta):
-	if initialized:
+	if viewable:
 		if Input.is_action_just_pressed("ui_accept"):
 			show()
 			chart.queue_redraw()
@@ -40,8 +43,9 @@ func _process(delta):
 
 func add_function(f: Function):
 	fx.append(f)
-	if not initialized:
-		initialized = true
+	if chart == null:
+		chart = CHART_CLASS.instantiate()
+		add_child(chart)
 		
 		chart.plot(fx, properties)
 	else:
@@ -50,4 +54,5 @@ func add_function(f: Function):
 
 func reset_functions(f: Function):
 	fx = []
+	chart = null
 	add_function(f)

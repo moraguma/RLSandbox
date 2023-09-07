@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cndliy0xg0m5b"]
+[gd_scene load_steps=12 format=3 uid="uid://cndliy0xg0m5b"]
 
 [ext_resource type="Texture2D" uid="uid://d274pyom4owob" path="res://resources/sprites/environment_tileset.png" id="1_gfq80"]
 [ext_resource type="Script" path="res://scenes/scripts/Environment.gd" id="2_m4csj"]
 [ext_resource type="Texture2D" uid="uid://7ohjh11hlusq" path="res://resources/sprites/objects_tileset.png" id="2_pk40i"]
 [ext_resource type="Texture2D" uid="uid://dbhm30ga75in" path="res://resources/sprites/agent.png" id="4_nx588"]
 [ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="5_cutwa"]
+[ext_resource type="Texture2D" uid="uid://ck2vbneo8g87j" path="res://resources/sprites/play.png" id="6_1hkb3"]
+[ext_resource type="Script" path="res://scenes/scripts/EnvironmentBuilder.gd" id="6_60b1d"]
+[ext_resource type="Texture2D" uid="uid://fu4kxuc8g80o" path="res://resources/sprites/stop.png" id="7_tosob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7pnhd"]
 texture = ExtResource("1_gfq80")
@@ -53,6 +56,25 @@ position = Vector2(96, 96)
 texture = ExtResource("4_nx588")
 offset = Vector2(0, -32)
 
+[node name="EnvironmentBuilder" type="Node2D" parent="."]
+script = ExtResource("6_60b1d")
+
+[node name="BuildingArea" type="Control" parent="EnvironmentBuilder"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 544.0
+
+[node name="Play" type="TextureButton" parent="EnvironmentBuilder"]
+offset_left = 864.0
+offset_top = 464.0
+offset_right = 928.0
+offset_bottom = 529.0
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("6_1hkb3")
+texture_pressed = ExtResource("7_tosob")
+
 [node name="SimulationSpeed" type="Label" parent="."]
 offset_left = 687.0
 offset_top = 12.0
@@ -71,3 +93,7 @@ max_value = 1.0
 step = 0.01
 value = 0.83
 scrollable = false
+
+[connection signal="mouse_entered" from="EnvironmentBuilder/BuildingArea" to="EnvironmentBuilder" method="focus_building"]
+[connection signal="mouse_exited" from="EnvironmentBuilder/BuildingArea" to="EnvironmentBuilder" method="unfocus_building"]
+[connection signal="pressed" from="EnvironmentBuilder/Play" to="." method="toggle_start"]

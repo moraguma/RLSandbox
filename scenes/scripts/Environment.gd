@@ -34,7 +34,7 @@ const TILE_TO_ACTION = {
 	Vector2i(0, 2): Vector2i(-1, 0)
 }
 
-const MAX_H = 13
+const MAX_H = 14
 const MAX_V = 7
 
 # Agent data -------------------------------------------------------------------
@@ -96,6 +96,7 @@ var averaged_function: Function = null
 @onready var agent_sprite = $Agent
 @onready var simulation_speed = $SimulationSpeed
 @onready var speed_slider = $Slider
+@onready var environment_builder = $EnvironmentBuilder
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
@@ -130,13 +131,23 @@ func _iterate_algorithm():
 # --------------------------------------------------------------------------------------------------
 # BUILDER
 # --------------------------------------------------------------------------------------------------
+func toggle_start():
+	if running:
+		stop()
+	else:
+		start()
+
+
 func start():
 	running = true
+	environment_builder.can_build = false
 	
 	randomize()
 	
 	load_scripts()
 	build_graph()
+	reset_tilemap_policy()
+	reset_values()
 	
 	while episodes < headless_episodes:
 		_iterate_algorithm()
@@ -148,20 +159,46 @@ func start():
 
 func stop():
 	running = false
+	environment_builder.can_build = true
+	
+	DataVisualizer.viewable = false
 	
 	simulation_speed.hide()
 	speed_slider.hide()
 
 
-# --------------------------------------------------------------------------------------------------
-# ENVIRONMENT
-# --------------------------------------------------------------------------------------------------
 func load_scripts():
 	action_results = action_results_script.new()
 	resetter = resetter_script.new()
 	rewarder = rewarder_script.new()
 	learner = learner_script.new()
 
+
+func reset_values():
+	episodes = 0
+	trial = []
+	
+	g_function = null
+	averaged_function = null 
+	running_episodes = 0
+	running_total_reward = 0
+
+
+func place_tile(tile_info, coords: Vector2i):
+	if tile_info["source_id"] == OBJECT_ID:
+		assert(tile_info["layer"] == OBJECT_LAYER, "Object used in non object layer!")
+		
+		if get_cell_atlas_coords(ENVIRONMENT_LAYER, coords) == WALL_TILE:
+			return
+	elif tile_info["source_id"] == ENVIRONMENT_ID:
+		assert(tile_info["layer"] == ENVIRONMENT_LAYER, "Environment used in non environment layer!")
+	
+	if coords[0] > 0 and coords[0] < MAX_H and coords[1] > 0 and coords[1] < MAX_V:
+		set_cell(tile_info["layer"], coords, tile_info["source_id"], tile_info["atlas_coords"])
+
+# --------------------------------------------------------------------------------------------------
+# ENVIRONMENT
+# --------------------------------------------------------------------------------------------------
 
 # Builds the MDP that represents the problem
 func build_graph():
@@ -178,6 +215,14 @@ func build_graph():
 				graph[tile][action_list[i]] = action_results.get_result(self, tile, action_list[i])
 				for j in range(len(graph[tile][action_list[i]])):
 					graph[tile][action_list[i]][j][0] = get_movement_result(tile, graph[tile][action_list[i]][j][0])
+
+
+func reset_tilemap_policy():
+	var object_tiles = get_used_cells_by_id(OBJECT_LAYER, OBJECT_ID)
+	
+	for tile in object_tiles:
+		if get_cell_atlas_coords(OBJECT_LAYER, tile) in TILE_TO_ACTION:
+			set_cell(OBJECT_LAYER, tile, -1)
 
 
 # Gets the resulting tile of a movement as a Vector2i
@@ -249,6 +294,7 @@ func update_visualization():
 				type = Function.Type.LINE,
 				interpolation = Function.Interpolation.STAIR })
 		DataVisualizer.reset_functions(g_function)
+		DataVisualizer.viewable = true
 	else:
 		g_function.add_point(episodes, cummulative_reward)
 		if g_function.count_points() > MAX_DATA_POINTS:
