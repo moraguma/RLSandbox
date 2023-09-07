@@ -12,3 +12,5 @@ resetter_script = ExtResource("3_g5vti")
 rewarder_script = ExtResource("4_pbgw6")
 learner_script = ExtResource("5_27ur2")
 headless_episodes = 200
+
+[editable path="EnvironmentBuilder/Objects"]

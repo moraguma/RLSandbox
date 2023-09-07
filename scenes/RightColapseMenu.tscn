@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ejr6e87jlm2y"]
+
+[ext_resource type="Script" path="res://scenes/scripts/ColapseMenu.gd" id="1_lowqy"]
+[ext_resource type="PackedScene" uid="uid://b2jhte8c8lgfh" path="res://scenes/RightFold.tscn" id="2_uy1gv"]
+
+[node name="RightColapseMenu" type="Polygon2D"]
+polygon = PackedVector2Array(0, 0, 0, 576, -320, 576, -320, 0)
+script = ExtResource("1_lowqy")
+active_pos = Vector2(320, 0)
+
+[node name="MouseBlocker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -320.0
+offset_bottom = 576.0
+
+[node name="MouseIdentifier" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_right = 960.0
+offset_bottom = 576.0
+
+[node name="Fold" parent="." instance=ExtResource("2_uy1gv")]
+
+[connection signal="mouse_entered" from="MouseIdentifier" to="." method="colapse"]

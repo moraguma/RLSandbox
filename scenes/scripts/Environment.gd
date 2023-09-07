@@ -152,6 +152,7 @@ func start():
 	while episodes < headless_episodes:
 		_iterate_algorithm()
 	
+	environment_builder.hide()
 	agent_sprite.show()
 	simulation_speed.show()
 	speed_slider.show()
@@ -163,6 +164,7 @@ func stop():
 	
 	DataVisualizer.viewable = false
 	
+	environment_builder.show()
 	simulation_speed.hide()
 	speed_slider.hide()
 
@@ -192,6 +194,7 @@ func place_tile(tile_info, coords: Vector2i):
 			return
 	elif tile_info["source_id"] == ENVIRONMENT_ID:
 		assert(tile_info["layer"] == ENVIRONMENT_LAYER, "Environment used in non environment layer!")
+		set_cell(OBJECT_LAYER, coords, -1)
 	
 	if coords[0] > 0 and coords[0] < MAX_H and coords[1] > 0 and coords[1] < MAX_V:
 		set_cell(tile_info["layer"], coords, tile_info["source_id"], tile_info["atlas_coords"])
@@ -294,7 +297,6 @@ func update_visualization():
 				type = Function.Type.LINE,
 				interpolation = Function.Interpolation.STAIR })
 		DataVisualizer.reset_functions(g_function)
-		DataVisualizer.viewable = true
 	else:
 		g_function.add_point(episodes, cummulative_reward)
 		if g_function.count_points() > MAX_DATA_POINTS:
@@ -310,6 +312,8 @@ func update_visualization():
 					type = Function.Type.LINE,
 					interpolation = Function.Interpolation.LINEAR })
 			DataVisualizer.add_function(averaged_function)
+			DataVisualizer.viewable = true
+			
 		else:
 			averaged_function.add_point(episodes, running_total_reward / running_episodes)
 			if averaged_function.count_points() * EPISODES_TO_AVERAGE > MAX_DATA_POINTS:

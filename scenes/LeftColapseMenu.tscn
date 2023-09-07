@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl2qfv56pe53d"]
+
+[ext_resource type="Script" path="res://scenes/scripts/ColapseMenu.gd" id="1_hk5lm"]
+[ext_resource type="PackedScene" uid="uid://dx0mgswvf7shb" path="res://scenes/LeftFold.tscn" id="2_2bpl8"]
+
+[node name="LeftColapseMenu" type="Polygon2D"]
+position = Vector2(960, 0)
+polygon = PackedVector2Array(0, 0, 0, 576, 320, 576, 320, 0)
+script = ExtResource("1_hk5lm")
+inactive_pos = Vector2(960, 0)
+active_pos = Vector2(640, 0)
+
+[node name="MouseBlocker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 576.0
+
+[node name="MouseIdentifier" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -960.0
+offset_right = -64.0
+offset_bottom = 576.0
+
+[node name="Fold" parent="." instance=ExtResource("2_2bpl8")]
