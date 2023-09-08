@@ -25,13 +25,21 @@ const ACTION_TO_TILE = {
 	Vector2i(0, -1): Vector2i(0, 0),
 	Vector2i(1, 0): Vector2i(0, 1),
 	Vector2i(0, 1): Vector2i(0, 3),
-	Vector2i(-1, 0): Vector2i(0, 2)
+	Vector2i(-1, 0): Vector2i(0, 2),
+	Vector2i(-1, 1): Vector2i(1, 0),
+	Vector2i(1, 1): Vector2i(2, 0),
+	Vector2i(-1, -1): Vector2i(1, 1),
+	Vector2i(1, -1): Vector2i(2, 1)
 }
 const TILE_TO_ACTION = {
 	Vector2i(0, 0): Vector2i(0, -1),
 	Vector2i(0, 1): Vector2i(1, 0),
 	Vector2i(0, 3): Vector2i(0, 1),
-	Vector2i(0, 2): Vector2i(-1, 0)
+	Vector2i(0, 2): Vector2i(-1, 0),
+	Vector2i(1, 0): Vector2i(-1, 1),
+	Vector2i(2, 0): Vector2i(1, 1),
+	Vector2i(1, 1): Vector2i(-1, -1),
+	Vector2i(2, 1): Vector2i(1, -1)
 }
 
 const MAX_H = 14
@@ -44,9 +52,6 @@ const AGENT_SPRITE_LERP_WEIGHT = 0.5
 # Rendering --------------------------------------------------------------------
 const MIN_FRAMES_PER_ITERATION = 1
 const MAX_FRAMES_PER_ITERATION = 60
-
-# Learning ---------------------------------------------------------------------
-const MAX_STEPS = 50
 
 # Visualization ----------------------------------------------------------------
 const EPISODES_TO_AVERAGE = 20
@@ -64,6 +69,7 @@ var graph = {}
 
 var trial = [] # List of [s, a, r]
 var episodes = 0
+var max_steps = 50
 
 # Components -------------------------------------------------------------------
 var action_results: ActionResults = preload("res://scenes/scripts/env_components/action_results/SidewaysShift.gd").new()
@@ -90,13 +96,14 @@ var averaged_function: Function = null
 @onready var simulation_speed = $SimulationSpeed
 @onready var speed_slider = $Slider
 @onready var environment_builder = $EnvironmentBuilder
+@onready var play_button = $Play
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
 # --------------------------------------------------------------------------------------------------
 
 func _ready():
-	start()
+	stop()
 
 
 func _process(delta):
@@ -128,10 +135,23 @@ func toggle_start():
 	if running:
 		stop()
 	else:
-		start()
+		var valid_map = false
+		for tile in get_used_cells_by_id(ENVIRONMENT_LAYER, ENVIRONMENT_ID):
+			var env = get_cell_atlas_coords(ENVIRONMENT_LAYER, tile)
+			var obj = get_cell_atlas_coords(OBJECT_LAYER, tile)
+			if env != WALL_TILE and not obj in [WIN_TILE, LOSE_TILE]:
+				valid_map = true
+				break
+		
+		if len(action_list) > 0 and valid_map:
+			start()
+		else:
+			play_button.set_pressed_no_signal(false)
 
 
 func start():
+	agent_sprite.show()
+	
 	running = true
 	environment_builder.can_build = false
 	
@@ -152,6 +172,9 @@ func start():
 
 
 func stop():
+	play_button.set_pressed_no_signal(false)
+	agent_sprite.hide()
+	
 	running = false
 	environment_builder.can_build = true
 	
@@ -223,7 +246,7 @@ func get_movement_result(start, action):
 
 # Checks if this state is terminal
 func is_terminal(state):
-	return get_cell_atlas_coords(OBJECT_LAYER, state) in [WIN_TILE, LOSE_TILE] or len(trial) >= MAX_STEPS
+	return get_cell_atlas_coords(OBJECT_LAYER, state) in [WIN_TILE, LOSE_TILE] or len(trial) >= max_steps
 
 
 # Takes a step in a trial according to its learner. If a trial isn't

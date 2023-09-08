@@ -19,6 +19,9 @@ const LEARNER_PROPERTIES = {
 	"Starting alpha": "starting_alpha",
 	"Eps to converge": "episodes_to_zero"
 }
+const ENVIRONMENT_PROPERTIES = {
+	"Max steps": "max_steps"
+}
 
 
 var selected_tile = null
@@ -37,7 +40,9 @@ var episodes_to_zero
 @onready var tile_buttons = [$Blocks/EmptyTile, $Blocks/WallTile, $Objects/WinTile, $Objects/LoseTile]
 @onready var learner_buttons = [$Algorithms/VBoxContainer/ADP, $Algorithms/VBoxContainer/MCES, $Algorithms/VBoxContainer/Sarsa, $Algorithms/VBoxContainer/QLearning]
 @onready var property_sliders = [$Rewards/BaseReward, $Rewards/WinReward, $Rewards/LoseReward, $Environment/ShiftChance]
+@onready var environment_property_sliders = [$Environment/MaxSteps]
 @onready var learner_property_sliders = [$Values/Gamma, $Values/StartingEpsilon, $Values/StartingAlpha, $Values/EpisodesToZero]
+@onready var action_buttons = [$Environment/LeftUp, $Environment/Up, $Environment/RightUp, $Environment/Left, $Environment/Right, $Environment/LeftDown, $Environment/Down, $Environment/RightDown]
 
 
 func _ready():
@@ -55,9 +60,19 @@ func _ready():
 		update_property(property_slider.property, property_slider.value)
 		property_slider.connect("update_property", update_property)
 	
+	for environment_property_slider in environment_property_sliders:
+		update_environment_property(environment_property_slider.property, environment_property_slider.value)
+		environment_property_slider.connect("update_property", update_environment_property)
+	
 	for learner_property_slider in learner_property_sliders:
 		update_learner_property(learner_property_slider.property, learner_property_slider.value)
 		learner_property_slider.connect("update_property", update_learner_property)
+	
+	for action_button in action_buttons:
+		if action_button.action in environment.action_list:
+			action_button.toggle()
+		action_button.connect("select_action", add_action)
+		action_button.connect("deselect_action", remove_action)
 
  
 func _input(event):
@@ -90,8 +105,21 @@ func select_tile(tile_info):
 	selected_tile = tile_info
 
 
+func add_action(action):
+	if not action in environment.action_list:
+		environment.action_list.append(action)
+
+
+func remove_action(action):
+	environment.action_list.erase(action)
+
+
 func update_property(name, value):
 	environment.get(PROPERTIES[name]["component"]).set(PROPERTIES[name]["property"], value)
+
+
+func update_environment_property(name, value):
+	environment.set(ENVIRONMENT_PROPERTIES[name], value)
 
 
 func update_learner_property(name, value):
