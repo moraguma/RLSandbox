@@ -34,10 +34,10 @@ func _ready():
 
 func _process(delta):
 	if viewable:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("graph"):
 			show()
 			chart.queue_redraw()
-		if Input.is_action_just_released("ui_accept"):
+		if Input.is_action_just_released("graph"):
 			hide()
 
 

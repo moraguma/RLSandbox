@@ -13,7 +13,7 @@ var episodes_to_zero = 50
 var episodes = 0
 
 # trial is a list of [s, a, r]
-func rl_step(trial: Array, is_terminal: bool) -> void:
+func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 	if is_terminal:
 		episodes += 1
 	if len(trial) > 1:
@@ -41,9 +41,19 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 						nq[s][a] += p * (r + gamma * get_state_value(q, ns))
 					delta = max(delta, abs(nq[s][a] - q[s][a]))
 			q = nq
+		
+		# Updates value function visualization -----------------------------------------------------
+		for s in q:
+			var v = -INF
+			
+			for pa in q[s]:
+				if q[s][pa] > v:
+					v = q[s][pa]
+			
+			env.update_value_view(s, v)
 
 # Graph, current state
-func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:
 	var r = randf()
 	if r <= linear_decrease(starting_epsilon, episodes_to_zero, episodes):
 		return ax[randi() % len(ax)]

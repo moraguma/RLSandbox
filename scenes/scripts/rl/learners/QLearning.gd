@@ -12,7 +12,10 @@ var past_ax
 
 
 # trial is a list of [s, a, r]
-func rl_step(trial: Array, is_terminal: bool) -> void:
+func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
+	if is_terminal:
+		episodes += 1
+	
 	# Will only update after an action has been taken
 	if len(trial) >= 2:
 		var s = trial[-2][0]
@@ -26,12 +29,19 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 		
 		var td_error = r + gamma * q[ns][na] - q[s][a]
 		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero, episodes) * td_error
-	if is_terminal:
-		episodes += 1
+		
+		# Updates value function visualization ---------------------------------------------------------
+		var v = -INF
+		
+		for pa in q[s]:
+			if q[s][pa] > v:
+				v = q[s][pa]
+		
+		env.update_value_view(s, v)
 
 
 # q[s][a] is the q value of s, a
-func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:
 	past_ax = ax
 	
 	var r = randf()

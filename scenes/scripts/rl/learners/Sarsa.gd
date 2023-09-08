@@ -13,27 +13,37 @@ var na
 
 
 # trial is a list of [s, a, r]
-func rl_step(trial: Array, is_terminal: bool) -> void:
+func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
+	if is_terminal:
+		na = null
+		episodes += 1
+	
 	# Will only update after an action has been taken
 	if len(trial) >= 2:
 		var s = trial[-2][0]
 		var ns = trial[-1][0]
 		var a = trial[-2][1]
 		var r =  trial[-1][2]
-		na = select_action(ns, past_ax)
+		na = select_action(ns, past_ax, env)
 		
 		init_q(q, s, a, false)
 		init_q(q, ns, na, is_terminal)
 		
 		var td_error = r + gamma * q[ns][na] - q[s][a]
 		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero, episodes) * td_error
-	if is_terminal:
-		na = null
-		episodes += 1
+		
+		# Updates value function visualization ---------------------------------------------------------
+		var v = -INF
+		
+		for pa in q[s]:
+			if q[s][pa] > v:
+				v = q[s][pa]
+		
+		env.update_value_view(s, v)
 
 
 # q[s][a] is the q value of s, a
-func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:
 	past_ax = ax
 	
 	if na != null:

@@ -10,7 +10,7 @@ var episodes = 0
 
 
 # trial is a list of [s, a, r]
-func rl_step(trial: Array, is_terminal: bool) -> void:
+func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 	# Will only run is update if the episode has ended
 	if is_terminal:
 		episodes += 1
@@ -28,10 +28,19 @@ func rl_step(trial: Array, is_terminal: bool) -> void:
 			init_state_action(state_action_frequency, s, a)
 			state_action_value[s][a] = (state_action_frequency[s][a] * state_action_value[s][a] + G) / (state_action_frequency[s][a] + 1)
 			state_action_frequency[s][a] += 1
+			
+			# Updates value function visualization -------------------------------------------------
+			var v = -INF
+			
+			for pa in state_action_value[s]:
+				if state_action_value[s][pa] > v:
+					v = state_action_value[s][pa]
+			
+			env.update_value_view(s, v)
 
 # Graph, current state
 # g[state][action] is a list of [resulting state, probability]
-func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:
 	var r = randf()
 	if r <= linear_decrease(starting_epsilon, episodes_to_zero, episodes):
 		return ax[randi() % len(ax)]

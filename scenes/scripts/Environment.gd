@@ -82,6 +82,8 @@ var learner: Learner
 var frames_passed = 0
 
 # Visualization ----------------------------------------------------------------
+
+# Graph
 var cummulative_reward = 0
 var running_total_reward = 0
 var running_episodes = 0
@@ -97,6 +99,7 @@ var averaged_function: Function = null
 @onready var speed_slider = $Slider
 @onready var environment_builder = $EnvironmentBuilder
 @onready var play_button = $Play
+@onready var value_function_holder = $ValueFunction
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
@@ -115,6 +118,11 @@ func _process(delta):
 			frames_passed = 0
 			
 			_iterate_algorithm()
+	
+	if Input.is_action_just_pressed("value_function"):
+		value_function_holder.show()
+	elif Input.is_action_just_released("value_function"):
+		value_function_holder.hide()
 
 
 # Calls function for the chosen RL algorithm
@@ -122,7 +130,7 @@ func _iterate_algorithm():
 	environment_step()
 	cummulative_reward += trial[-1][2]
 	
-	learner.rl_step(trial, is_terminal(trial[-1][0]))
+	learner.rl_step(trial, is_terminal(trial[-1][0]), self)
 	
 	if is_terminal(trial[-1][0]):
 		reset_episode()
@@ -137,9 +145,7 @@ func toggle_start():
 	else:
 		var valid_map = false
 		for tile in get_used_cells_by_id(ENVIRONMENT_LAYER, ENVIRONMENT_ID):
-			var env = get_cell_atlas_coords(ENVIRONMENT_LAYER, tile)
-			var obj = get_cell_atlas_coords(OBJECT_LAYER, tile)
-			if env != WALL_TILE and not obj in [WIN_TILE, LOSE_TILE]:
+			if is_tile_playable(tile):
 				valid_map = true
 				break
 		
@@ -147,6 +153,12 @@ func toggle_start():
 			start()
 		else:
 			play_button.set_pressed_no_signal(false)
+
+
+func is_tile_playable(tile: Vector2i) -> bool:
+	var env = get_cell_atlas_coords(ENVIRONMENT_LAYER, tile)
+	var obj = get_cell_atlas_coords(OBJECT_LAYER, tile)
+	return env != WALL_TILE and not obj in [WIN_TILE, LOSE_TILE]
 
 
 func start():
@@ -159,6 +171,7 @@ func start():
 	
 	learner = environment_builder.get_learner()
 	build_graph()
+	build_value_view()
 	reset_tilemap_policy()
 	reset_values()
 	
@@ -179,6 +192,8 @@ func stop():
 	environment_builder.can_build = true
 	
 	DataVisualizer.viewable = false
+	
+	reset_value_view()
 	
 	environment_builder.show()
 	simulation_speed.hide()
@@ -256,7 +271,7 @@ func environment_step():
 		move_to(resetter.get_initial_tile(graph))
 	else:
 		var past_state = trial[-1][0]
-		trial[-1][1] = learner.select_action(past_state, action_list)
+		trial[-1][1] = learner.select_action(past_state, action_list, self)
 		
 		take_step(past_state, trial[-1][1])
 
@@ -296,6 +311,29 @@ func reset_episode():
 	update_visualization()
 	
 	cummulative_reward = 0
+
+
+# --------------------------------------------------------------------------------------------------
+# VISUALIZATION
+# --------------------------------------------------------------------------------------------------
+
+func reset_value_view():
+	for value_view in value_function_holder.get_children():
+		value_view.reset()
+		value_view.hide()
+
+
+func build_value_view():
+	for tile in get_used_cells_by_id(ENVIRONMENT_LAYER, ENVIRONMENT_ID):
+		if is_tile_playable(tile):
+			value_function_holder.get_node_by_coord(tile).show()
+
+
+func update_value_view(coord: Vector2i, value: float):
+	var value_view: ValueView = value_function_holder.get_node_by_coord(coord)
+	
+	if value_view != null:
+		value_view.set_value(value)
 
 
 func update_visualization():

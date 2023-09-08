@@ -3,11 +3,11 @@ class_name Learner
 # Math -------------------------------------------------------------------------
 const e = 2.71828
 
-func rl_step(trial: Array, is_terminal: bool) -> void:
+func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 	pass
 
 # Graph, current state
-func select_action(s: Vector2i, ax: Array[Vector2i]) -> Vector2i:
+func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:
 	return Vector2i(0, 0)
 
 # --------------------------------------------------------------------------------------------------
