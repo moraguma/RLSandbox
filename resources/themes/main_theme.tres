@@ -40,3 +40,5 @@ HSlider/icons/grabber_highlight = ExtResource("2_xkn2a")
 HSlider/styles/slider = SubResource("StyleBoxFlat_qofdb")
 Label/colors/font_outline_color = Color(0.156863, 0.156863, 0.156863, 1)
 Label/constants/outline_size = 8
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 8

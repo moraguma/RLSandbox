@@ -56,6 +56,7 @@ const MAX_FRAMES_PER_ITERATION = 60
 # Visualization ----------------------------------------------------------------
 const EPISODES_TO_AVERAGE = 20
 const MAX_DATA_POINTS = 1000
+const CHARS_PRE_GRAPH = 34
 
 # --------------------------------------------------------------------------------------------------
 # VARIABLES
@@ -101,6 +102,7 @@ var averaged_function: Function = null
 @onready var play_button = $Play
 @onready var value_function_holder = $ValueFunction
 @onready var policy_holder = $Policy
+@onready var instructions = $Instructions
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
@@ -185,6 +187,9 @@ func start():
 	while episodes < headless_episodes:
 		_iterate_algorithm()
 	
+	instructions.visible_characters = 34
+	instructions.show()
+	
 	environment_builder.hide()
 	agent_sprite.show()
 	simulation_speed.show()
@@ -203,6 +208,7 @@ func stop():
 	reset_value_view()
 	reset_policy_view()
 	
+	instructions.hide()
 	environment_builder.show()
 	simulation_speed.hide()
 	speed_slider.hide()
@@ -387,6 +393,7 @@ func update_visualization():
 					interpolation = Function.Interpolation.LINEAR })
 			DataVisualizer.add_function(averaged_function)
 			DataVisualizer.viewable = true
+			instructions.visible_characters = -1
 			
 		else:
 			averaged_function.add_point(episodes, running_total_reward / running_episodes)

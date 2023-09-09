@@ -69,6 +69,17 @@ position = Vector2(96, 96)
 texture = ExtResource("4_nx588")
 offset = Vector2(0, -32)
 
+[node name="Instructions" type="RichTextLabel" parent="."]
+visible = false
+offset_top = 499.0
+offset_right = 960.0
+offset_bottom = 531.0
+theme = ExtResource("5_cutwa")
+bbcode_enabled = true
+text = "[center][color=#ffb600]Q[/color] - Value function   [color=#ffb600]W[/color] - Policy   [color=#ffb600]Space[/color] - Reward graph"
+visible_characters = 34
+visible_ratio = 0.62963
+
 [node name="ValueFunction" type="Node2D" parent="."]
 visible = false
 script = ExtResource("5_yev4p")
