@@ -30,13 +30,7 @@ func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 			state_action_frequency[s][a] += 1
 			
 			# Updates value function visualization -------------------------------------------------
-			var v = -INF
-			
-			for pa in state_action_value[s]:
-				if state_action_value[s][pa] > v:
-					v = state_action_value[s][pa]
-			
-			env.update_value_view(s, v)
+			update_view_qs(state_action_value, s, env)
 
 # Graph, current state
 # g[state][action] is a list of [resulting state, probability]

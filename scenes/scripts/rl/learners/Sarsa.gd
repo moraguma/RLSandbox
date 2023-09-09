@@ -33,13 +33,7 @@ func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero, episodes) * td_error
 		
 		# Updates value function visualization ---------------------------------------------------------
-		var v = -INF
-		
-		for pa in q[s]:
-			if q[s][pa] > v:
-				v = q[s][pa]
-		
-		env.update_value_view(s, v)
+		update_view_qs(q, s, env)
 
 
 # q[s][a] is the q value of s, a

@@ -44,13 +44,7 @@ func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 		
 		# Updates value function visualization -----------------------------------------------------
 		for s in q:
-			var v = -INF
-			
-			for pa in q[s]:
-				if q[s][pa] > v:
-					v = q[s][pa]
-			
-			env.update_value_view(s, v)
+			update_view_qs(q, s, env)
 
 # Graph, current state
 func select_action(s: Vector2i, ax: Array[Vector2i], env: RLEnvironment) -> Vector2i:

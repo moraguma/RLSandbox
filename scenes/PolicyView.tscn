@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://uo2xtu5qyjha"]
+
+[ext_resource type="Script" path="res://scenes/scripts/PolicyView.gd" id="1_l2b45"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ir6j"]
+
+[node name="PolicyView" type="Node2D"]
+script = ExtResource("1_l2b45")
+
+[node name="Base" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.113725)
+polygon = PackedVector2Array(0, -32, 23, -23, 32, 0, 23, 23, 0, 32, -23, 23, -32, 0, -23, -23)
+
+[node name="Up" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, 0, -32)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="RightUp" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, 23, -23)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="Right" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, 32, 0)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="RightDown" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, 23, 23)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="Down" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, 0, 32)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="LeftDown" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, -23, 23)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="Left" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, -32, 0)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2
+
+[node name="LeftUp" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_7ir6j")
+points = PackedVector2Array(0, 0, -23, -23)
+width = 4.0
+default_color = Color(1, 0.713726, 0, 1)
+end_cap_mode = 2

@@ -100,6 +100,7 @@ var averaged_function: Function = null
 @onready var environment_builder = $EnvironmentBuilder
 @onready var play_button = $Play
 @onready var value_function_holder = $ValueFunction
+@onready var policy_holder = $Policy
 
 # --------------------------------------------------------------------------------------------------
 # BUILT-INS
@@ -123,6 +124,11 @@ func _process(delta):
 		value_function_holder.show()
 	elif Input.is_action_just_released("value_function"):
 		value_function_holder.hide()
+	
+	if Input.is_action_just_pressed("policy"):
+		policy_holder.show()
+	elif Input.is_action_just_released("policy"):
+		policy_holder.hide()
 
 
 # Calls function for the chosen RL algorithm
@@ -172,6 +178,7 @@ func start():
 	learner = environment_builder.get_learner()
 	build_graph()
 	build_value_view()
+	build_policy_view()
 	reset_tilemap_policy()
 	reset_values()
 	
@@ -194,6 +201,7 @@ func stop():
 	DataVisualizer.viewable = false
 	
 	reset_value_view()
+	reset_policy_view()
 	
 	environment_builder.show()
 	simulation_speed.hide()
@@ -334,6 +342,25 @@ func update_value_view(coord: Vector2i, value: float):
 	
 	if value_view != null:
 		value_view.set_value(value)
+
+
+func reset_policy_view():
+	for policy_view in policy_holder.get_children():
+		policy_view.reset()
+		policy_view.hide()
+
+
+func build_policy_view():
+	for tile in get_used_cells_by_id(ENVIRONMENT_LAYER, ENVIRONMENT_ID):
+		if is_tile_playable(tile):
+			policy_holder.get_node_by_coord(tile).show()
+
+
+func update_policy_view(coord: Vector2i, action: Vector2i, value: float):
+	var policy_view: PolicyView = policy_holder.get_node_by_coord(coord)
+	
+	if policy_view != null:
+		policy_view.set_value(action, value)
 
 
 func update_visualization():
