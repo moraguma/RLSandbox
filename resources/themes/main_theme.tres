@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b7r8h8ks7why0" path="res://resources/sprites/slider.png" id="1_r7ht5"]
 [ext_resource type="Texture2D" uid="uid://bw8lshy4b4fpi" path="res://resources/sprites/slider_selected.png" id="2_xkn2a"]
-[ext_resource type="FontFile" uid="uid://b1wvtgv8fgr3s" path="res://resources/fonts/foo.otf" id="3_w2q5q"]
+[ext_resource type="FontFile" uid="uid://dyfeugaua8jir" path="res://resources/fonts/vds/VDS_Bold_New.ttf" id="3_rjg1p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ne5op"]
 
@@ -24,7 +24,7 @@ expand_margin_top = 3.0
 expand_margin_bottom = 5.0
 
 [resource]
-default_font = ExtResource("3_w2q5q")
+default_font = ExtResource("3_rjg1p")
 default_font_size = 24
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(1, 0.713726, 0, 1)

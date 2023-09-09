@@ -55,7 +55,7 @@ const MAX_FRAMES_PER_ITERATION = 60
 
 # Visualization ----------------------------------------------------------------
 const EPISODES_TO_AVERAGE = 20
-const MAX_DATA_POINTS = 1000
+const MAX_DATA_POINTS = 2000
 const CHARS_PRE_GRAPH = 34
 
 # --------------------------------------------------------------------------------------------------

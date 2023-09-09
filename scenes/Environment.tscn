@@ -1089,9 +1089,9 @@ offset_left = 32.0
 offset_top = 376.0
 offset_right = 288.0
 offset_bottom = 440.0
-min_value = 5.0
-max_value = 500.0
-step = 5.0
+min_value = 10.0
+max_value = 1000.0
+step = 10.0
 value = 200.0
 property = "Eps to converge"
 

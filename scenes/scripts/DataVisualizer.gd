@@ -29,7 +29,7 @@ func _ready():
 	properties.y_label = "Cummulative reward"
 	properties.x_scale = 5
 	properties.y_scale = 10
-	properties.max_samples = 1000
+	properties.max_samples = 2000
 
 
 func _process(delta):

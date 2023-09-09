@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b1wvtgv8fgr3s"
-path="res://.godot/imported/foo.otf-48be32f1ea708a555cf0a098a6846364.fontdata"
+uid="uid://bemgxo1l7viyv"
+path="res://.godot/imported/VDS_Compensated_Light.ttf-6f3514b830e6db2b1f3c68cacd23778e.fontdata"
 
 [deps]
 
-source_file="res://resources/fonts/foo.otf"
-dest_files=["res://.godot/imported/foo.otf-48be32f1ea708a555cf0a098a6846364.fontdata"]
+source_file="res://resources/fonts/vds/VDS_Compensated_Light.ttf"
+dest_files=["res://.godot/imported/VDS_Compensated_Light.ttf-6f3514b830e6db2b1f3c68cacd23778e.fontdata"]
 
 [params]
 
