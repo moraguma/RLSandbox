@@ -374,7 +374,7 @@ func update_visualization():
 		g_function = Function.new([episodes], [cummulative_reward], "Reward",
 			{ color = Color("#1a1817"),
 				marker = Function.Marker.CIRCLE,
-				type = Function.Type.LINE,
+				type = Function.Type.SCATTER,
 				interpolation = Function.Interpolation.STAIR })
 		DataVisualizer.reset_functions(g_function)
 	else:

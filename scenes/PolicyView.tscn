@@ -8,7 +8,7 @@
 script = ExtResource("1_l2b45")
 
 [node name="Base" type="Polygon2D" parent="."]
-color = Color(1, 1, 1, 0.113725)
+color = Color(1, 1, 1, 0.501961)
 polygon = PackedVector2Array(0, -32, 23, -23, 32, 0, 23, 23, 0, 32, -23, 23, -32, 0, -23, -23)
 
 [node name="Up" type="Line2D" parent="."]
