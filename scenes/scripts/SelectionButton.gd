@@ -8,6 +8,8 @@ signal select(selection)
 
 
 func _pressed():
+	SoundController.play_sfx("Click")
+	
 	emit_signal("select", selection)
 	disabled = true
 

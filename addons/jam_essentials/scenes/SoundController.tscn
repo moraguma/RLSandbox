@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqkx1bmvj3rym"]
+[gd_scene load_steps=3 format=3 uid="uid://bqkx1bmvj3rym"]
 
 [ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/SoundController.gd" id="1_xbq3f"]
+[ext_resource type="AudioStream" uid="uid://2npk3sdngo5u" path="res://resources/sounds/select.ogg" id="2_0gst8"]
 
 [node name="SoundController" type="Node"]
 script = ExtResource("1_xbq3f")
 
 [node name="SFX" type="Node" parent="."]
+
+[node name="Click" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_0gst8")
+volume_db = -10.0
 
 [node name="Music" type="Node" parent="."]

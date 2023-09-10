@@ -23,6 +23,8 @@ func _ready():
 
 
 func pressed():
+	SoundController.play_sfx("Click")
+	
 	emit_signal("select", tile_info)
 	selection_indicator.show()
 

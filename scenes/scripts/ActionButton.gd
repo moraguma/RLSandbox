@@ -15,6 +15,8 @@ var toggled = false
 
 
 func pressed():
+	SoundController.play_sfx("Click")
+	
 	if toggled:
 		untoggle()
 	else:
