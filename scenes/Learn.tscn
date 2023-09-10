@@ -38,83 +38,18 @@ custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="Test" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+[node name="Introduction" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
 layout_mode = 2
 theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
+text = "Introduction"
+selection = "res://scenes/lessons/Introduction.tscn"
 
-[node name="Test2" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+[node name="Rewards" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
 layout_mode = 2
 theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test3" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test4" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test5" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test6" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test7" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test8" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test9" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test10" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test11" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test12" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
-
-[node name="Test13" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
-layout_mode = 2
-theme = ExtResource("4_w63bk")
-text = "Test lesson"
-selection = "res://scenes/Lesson.tscn"
+text = "Rewards
+"
+selection = "res://scenes/lessons/Rewards.tscn"
 
 [node name="Door" type="TextureRect" parent="."]
 offset_left = 32.0
