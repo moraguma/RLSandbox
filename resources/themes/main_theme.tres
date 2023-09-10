@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dpvfhrd6522wp"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dpvfhrd6522wp"]
 
 [ext_resource type="Texture2D" uid="uid://b7r8h8ks7why0" path="res://resources/sprites/slider.png" id="1_r7ht5"]
 [ext_resource type="Texture2D" uid="uid://bw8lshy4b4fpi" path="res://resources/sprites/slider_selected.png" id="2_xkn2a"]
@@ -23,6 +23,71 @@ corner_radius_bottom_left = 4
 expand_margin_top = 3.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y01wu"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sibu"]
+bg_color = Color(1, 0.713726, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjdah"]
+bg_color = Color(1, 0.713726, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrkqg"]
+bg_color = Color(1, 1, 1, 0.345098)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nbn3"]
+bg_color = Color(1, 0.713726, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
 [resource]
 default_font = ExtResource("3_rjg1p")
 default_font_size = 24
@@ -40,5 +105,11 @@ HSlider/icons/grabber_highlight = ExtResource("2_xkn2a")
 HSlider/styles/slider = SubResource("StyleBoxFlat_qofdb")
 Label/colors/font_outline_color = Color(0.156863, 0.156863, 0.156863, 1)
 Label/constants/outline_size = 8
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 8
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_y01wu")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_4sibu")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_pjdah")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jrkqg")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_1nbn3")

@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpcdm4yxs3mfp"]
+
+[ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="1_de1hu"]
+[ext_resource type="Script" path="res://scenes/scripts/Learn.gd" id="1_np211"]
+[ext_resource type="TileSet" uid="uid://dmore66hiiyyo" path="res://resources/tilesets/Environment.tres" id="2_3mmef"]
+[ext_resource type="PackedScene" uid="uid://csew6g5jg7uo2" path="res://scenes/SelectionButton.tscn" id="3_2bjo4"]
+[ext_resource type="Theme" uid="uid://dhymcf16h2rcx" path="res://resources/themes/impact_theme.tres" id="4_w63bk"]
+[ext_resource type="Texture2D" uid="uid://dy6v6meyq0kpx" path="res://resources/sprites/door.png" id="6_dxkcm"]
+[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/TransitionButton.gd" id="7_5brtm"]
+
+[node name="Learn" type="Node2D"]
+script = ExtResource("1_np211")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_3mmef")
+format = 2
+layer_0/name = "Environment"
+layer_0/tile_data = PackedInt32Array(0, 0, 1, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 0, 1, 524288, 0, 1, 1, 0, 1, 65537, 0, 1, 131073, 0, 1, 196609, 0, 1, 262145, 0, 1, 327681, 0, 1, 393217, 0, 1, 458753, 0, 1, 524289, 0, 1, 2, 0, 1, 65538, 0, 1, 131074, 0, 1, 196610, 0, 1, 262146, 0, 1, 327682, 0, 1, 393218, 0, 1, 458754, 0, 1, 524290, 0, 1, 3, 0, 1, 65539, 0, 1, 131075, 0, 1, 196611, 0, 1, 262147, 0, 1, 327683, 0, 1, 393219, 0, 1, 458755, 0, 1, 524291, 0, 1, 4, 0, 1, 65540, 0, 1, 131076, 0, 1, 196612, 0, 1, 262148, 0, 1, 327684, 0, 1, 393220, 0, 1, 458756, 0, 1, 524292, 0, 1, 5, 0, 1, 65541, 0, 1, 131077, 0, 1, 196613, 0, 1, 262149, 0, 1, 327685, 0, 1, 393221, 0, 0, 458757, 0, 0, 524293, 0, 1, 6, 0, 1, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 1, 327686, 0, 1, 393222, 0, 0, 458758, 0, 0, 524294, 0, 1, 7, 0, 1, 65543, 0, 0, 131079, 0, 0, 196615, 0, 0, 262151, 0, 1, 327687, 0, 0, 393223, 0, 0, 458759, 0, 0, 524295, 0, 1, 8, 0, 1, 65544, 0, 0, 131080, 0, 1, 196616, 0, 0, 262152, 0, 1, 327688, 0, 0, 393224, 0, 0, 458760, 0, 0, 524296, 0, 1, 9, 0, 1, 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 1, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 524297, 0, 1, 10, 0, 1, 65546, 0, 1, 131082, 0, 1, 196618, 0, 1, 262154, 0, 1, 327690, 0, 0, 393226, 0, 0, 458762, 0, 1, 524298, 0, 1, 11, 0, 1, 65547, 0, 1, 131083, 0, 0, 196619, 0, 1, 262155, 0, 1, 327691, 0, 1, 393227, 0, 1, 458763, 0, 1, 524299, 0, 1, 12, 0, 1, 65548, 0, 1, 131084, 0, 0, 196620, 0, 1, 262156, 0, 1, 327692, 0, 1, 393228, 0, 0, 458764, 0, 1, 524300, 0, 1, 13, 0, 1, 65549, 0, 1, 131085, 0, 0, 196621, 0, 1, 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 458765, 0, 1, 524301, 0, 1, 14, 0, 1, 65550, 0, 1, 131086, 0, 1, 196622, 0, 1, 262158, 0, 1, 327694, 0, 1, 393230, 0, 1, 458766, 0, 1, 524302, 0, 1)
+layer_1/name = "Objects"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(65542, 65537, 3, 196614, 65537, 2, 131085, 65537, 2, 393229, 65537, 3, 327687, 65537, 2, 458757, 65537, 3)
+
+[node name="Lessons" type="ScrollContainer" parent="."]
+clip_contents = false
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 448.0
+theme = ExtResource("1_de1hu")
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Lessons"]
+custom_minimum_size = Vector2(368, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Test" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test2" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test3" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test4" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test5" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test6" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test7" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test8" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test9" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test10" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test11" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test12" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Test13" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Test lesson"
+selection = "res://scenes/Lesson.tscn"
+
+[node name="Door" type="TextureRect" parent="."]
+offset_left = 32.0
+offset_top = 464.0
+offset_right = 96.0
+offset_bottom = 528.0
+texture = ExtResource("6_dxkcm")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 465.0
+offset_right = 96.0
+offset_bottom = 529.0
+theme = ExtResource("1_de1hu")
+flat = true
+script = ExtResource("7_5brtm")
+transition_path = "res://scenes/Menu.tscn"

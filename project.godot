@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="RL Sandbox"
-run/main_scene="res://scenes/Environment.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://resources/sprites/agent.png"
 
 [autoload]
 
 DataVisualizer="*res://scenes/DataVisualizer.tscn"
+SceneManager="*res://addons/jam_essentials/scenes/SceneManager.tscn"
+GlobalCamera="*res://addons/jam_essentials/scenes/GlobalCamera.tscn"
+SoundController="*res://addons/jam_essentials/scenes/SoundController.tscn"
 
 [display]
 
@@ -26,7 +29,7 @@ window/size/viewport_height=540
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/easy_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_charts/plugin.cfg", "res://addons/jam_essentials/plugin.cfg")
 
 [input]
 

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dhymcf16h2rcx"]
+
+[ext_resource type="FontFile" uid="uid://baq7wadp53op4" path="res://resources/fonts/Ranchers-v1/Ranchers-Regular.ttf" id="1_276ia"]
+
+[resource]
+default_font = ExtResource("1_276ia")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 16
+RichTextLabel/font_sizes/normal_font_size = 128

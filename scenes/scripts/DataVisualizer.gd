@@ -16,7 +16,7 @@ var viewable = false
 
 func _ready():
 	properties = ChartProperties.new()
-	properties.font = load("res://resources/fonts/foo.otf")
+	properties.font = load("res://resources/fonts/vds/VDS_New.ttf")
 	properties.colors.frame = Color("#d4d4d4")
 	properties.colors.background = Color.TRANSPARENT
 	properties.colors.grid = Color("#524f4e")

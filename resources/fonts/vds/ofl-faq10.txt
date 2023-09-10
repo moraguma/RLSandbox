@@ -25,7 +25,7 @@ Yes, as long some other font or software is also on the disk, so the OFL font is
 
 1.7  Can I sell a software package that includes these fonts?
 Yes, you can do this with both the Standard Version and a Modified Version. Examples of bundling made possible by the OFL would include: word processors, design and publishing applications, training and educational software, edutainment software, etc.
-                                                                                                                                                  
+																																				  
 1.8  Why won't the OFL let me sell the fonts alone?
 The intent is to keep people from making money by simply redistributing the fonts. The only people who ought to profit directly from the fonts should be the original authors, and those authors have kindly given up potential income to distribute their fonts under the OFL. Please honor and respect their contribution!
 
