@@ -2,6 +2,7 @@ extends Node2D
 
 
 const LEARNER_PATHS = {
+	"DP": "res://scenes/scripts/rl/learners/DynamicProgramming.gd",
 	"ADP": "res://scenes/scripts/rl/learners/AdaptiveDynamicProgramming.gd",
 	"MCES": "res://scenes/scripts/rl/learners/MonteCarloES.gd",
 	"QLearning": "res://scenes/scripts/rl/learners/QLearning.gd",
@@ -38,7 +39,7 @@ var episodes_to_zero
 @onready var play_button = $"../Play"
 @onready var environment: RLEnvironment = get_parent()
 @onready var tile_buttons = [$Blocks/EmptyTile, $Blocks/WallTile, $Objects/WinTile, $Objects/LoseTile]
-@onready var learner_buttons = [$Algorithms/VBoxContainer/ADP, $Algorithms/VBoxContainer/MCES, $Algorithms/VBoxContainer/Sarsa, $Algorithms/VBoxContainer/QLearning]
+@onready var learner_buttons = [$Algorithms/VBoxContainer/DP, $Algorithms/VBoxContainer/ADP, $Algorithms/VBoxContainer/MCES, $Algorithms/VBoxContainer/Sarsa, $Algorithms/VBoxContainer/QLearning]
 @onready var property_sliders = [$Rewards/BaseReward, $Rewards/WinReward, $Rewards/LoseReward, $Environment/ShiftChance]
 @onready var environment_property_sliders = [$Environment/MaxSteps]
 @onready var learner_property_sliders = [$Values/Gamma, $Values/StartingEpsilon, $Values/StartingAlpha, $Values/EpisodesToZero]

@@ -952,6 +952,11 @@ offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 576.0
 
+[node name="DP" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
+layout_mode = 2
+text = "DP"
+selection = "DP"
+
 [node name="ADP" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
 layout_mode = 2
 text = "ADP"
