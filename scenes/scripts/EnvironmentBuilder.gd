@@ -9,6 +9,14 @@ const LEARNER_PATHS = {
 	"Sarsa": "res://scenes/scripts/rl/learners/Sarsa.gd",
 	"LFA QLearning": "res://scenes/scripts/rl/learners/QLearningLFA.gd"
 }
+const LEARNER_VALID_PROPERTIES = {
+	"DP": [true, false, false, false],
+	"ADP": [true, true, false, true],
+	"MCES": [true, true, false, true],
+	"QLearning": [true, true, true, true],
+	"Sarsa": [true, true, true, true],
+	"LFA QLearning": [true, true, true, true]
+}
 const PROPERTIES = {
 	"Base reward": {"component": "rewarder", "property": "base_reward"},
 	"Win reward": {"component": "rewarder", "property": "win_reward"},
@@ -45,6 +53,12 @@ var episodes_to_zero
 @onready var environment_property_sliders = [$Environment/MaxSteps]
 @onready var learner_property_sliders = [$Values/Gamma, $Values/StartingEpsilon, $Values/StartingAlpha, $Values/EpisodesToZero]
 @onready var action_buttons = [$Environment/LeftUp, $Environment/Up, $Environment/RightUp, $Environment/Left, $Environment/Right, $Environment/LeftDown, $Environment/Down, $Environment/RightDown]
+@onready var learner_properties_to_sliders = {
+	"gamma": $Values/Gamma,
+	"starting_epsilon": $Values/StartingEpsilon,
+	"starting_alpha": $Values/StartingAlpha,
+	"episodes_to_zero": $Values/EpisodesToZero
+}
 
 
 func _ready():
@@ -75,6 +89,8 @@ func _ready():
 			action_button.toggle()
 		action_button.connect("select_action", add_action)
 		action_button.connect("deselect_action", remove_action)
+	
+	organize_learner_properties()
 
  
 func _input(event):
@@ -98,6 +114,17 @@ func select_learner(learner):
 		learner_button.deselect()
 	
 	learner_name = learner
+	
+	organize_learner_properties()
+
+
+func organize_learner_properties():
+	var valid_sliders = LEARNER_VALID_PROPERTIES[learner_name]
+	for i in range(len(valid_sliders)):
+		if valid_sliders[i]:
+			learner_property_sliders[i].show()
+		else:
+			learner_property_sliders[i].hide()
 
 
 func select_tile(tile_info):

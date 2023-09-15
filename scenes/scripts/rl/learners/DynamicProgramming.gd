@@ -3,7 +3,6 @@ extends Learner
 # q[s][a]
 var q = {}
 var gamma = 0.9
-var episodes_to_zero = 50
 var episodes = 0
 
 # trial is a list of [s, a, r]

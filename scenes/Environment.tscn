@@ -764,7 +764,7 @@ position = Vector2(864, 416)
 
 [node name="EnvironmentBuilder" type="Node2D" parent="."]
 script = ExtResource("6_60b1d")
-learner_name = "ADP"
+learner_name = "DP"
 
 [node name="BuildingArea" type="Control" parent="EnvironmentBuilder"]
 layout_mode = 3
