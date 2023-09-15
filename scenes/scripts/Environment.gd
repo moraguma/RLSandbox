@@ -50,7 +50,7 @@ const AGENT_SPRITE_DEFAULT_OFFSET = Vector2(0, -32)
 const AGENT_SPRITE_LERP_WEIGHT = 0.5
 
 # Rendering --------------------------------------------------------------------
-const MIN_FRAMES_PER_ITERATION = 1
+const MIN_FRAMES_PER_ITERATION = 0.5
 const MAX_FRAMES_PER_ITERATION = 60
 
 # Visualization ----------------------------------------------------------------
@@ -116,11 +116,16 @@ func _process(delta):
 	if running:
 		agent_sprite.offset = lerp(agent_sprite.offset, AGENT_SPRITE_DEFAULT_OFFSET, AGENT_SPRITE_LERP_WEIGHT)
 		
+		var frames_per_iteration = MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value
+		
 		frames_passed += 1
-		if frames_passed >= MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value:
+		if frames_passed >= frames_per_iteration:
 			frames_passed = 0
 			
-			_iterate_algorithm()
+			var iterations_counted = 0
+			while iterations_counted < 1:
+				_iterate_algorithm()
+				iterations_counted += frames_per_iteration
 	
 	if Input.is_action_just_pressed("value_function"):
 		value_function_holder.show()
@@ -243,6 +248,7 @@ func place_tile(tile_info, coords: Vector2i):
 
 # Builds the MDP that represents the problem
 func build_graph():
+	# Graph is {s: {a: [s', p]}}
 	graph = {}
 	
 	var empty_tiles = get_used_cells_by_id(ENVIRONMENT_LAYER, ENVIRONMENT_ID, EMPTY_TILE)

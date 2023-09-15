@@ -32,6 +32,8 @@ func rl_step(trial: Array, is_terminal: bool, env: RLEnvironment) -> void:
 		var td_error = r + gamma * q[ns][na] - q[s][a]
 		q[s][a] += linear_decrease(starting_alpha, episodes_to_zero, episodes) * td_error
 		
+		if is_terminal:
+			na = null
 		# Updates value function visualization ---------------------------------------------------------
 		update_view_qs(q, s, env)
 
