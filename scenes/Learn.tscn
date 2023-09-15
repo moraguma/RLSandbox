@@ -31,7 +31,6 @@ offset_top = 16.0
 offset_right = 416.0
 offset_bottom = 448.0
 theme = ExtResource("1_de1hu")
-vertical_scroll_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="Lessons"]
 custom_minimum_size = Vector2(368, 0)
@@ -69,6 +68,12 @@ layout_mode = 2
 theme = ExtResource("4_w63bk")
 text = "Dynamic Programming"
 selection = "res://scenes/lessons/DynamicProgramming.tscn"
+
+[node name="DynamicProgramming2" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Adaptive DP"
+selection = "res://scenes/lessons/AdaptiveDynamicProgramming.tscn"
 
 [node name="Door" type="TextureRect" parent="."]
 offset_left = 32.0
