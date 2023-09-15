@@ -34,8 +34,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-expand_margin_left = 6.0
-expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sibu"]
 bg_color = Color(1, 0.713726, 0, 1)
@@ -48,8 +46,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-expand_margin_left = 6.0
-expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjdah"]
 bg_color = Color(1, 0.713726, 0, 1)
@@ -62,17 +58,12 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-expand_margin_left = 6.0
-expand_margin_right = 6.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrkqg"]
-bg_color = Color(0, 0, 0, 0.345098)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 4.0
-expand_margin_right = 4.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28ub5"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 12
+border_width_top = 12
+border_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nbn3"]
 bg_color = Color(1, 0.713726, 0, 1)
@@ -111,5 +102,5 @@ RichTextLabel/constants/outline_size = 8
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_y01wu")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_4sibu")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_pjdah")
-VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jrkqg")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_28ub5")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_1nbn3")

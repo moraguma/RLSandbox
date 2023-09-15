@@ -188,9 +188,3 @@ text = "Experiment!"
 flat = true
 script = ExtResource("7_4jv8i")
 transition_path = "res://scenes/experiments/DynamicProgramming.tscn"
-
-[node name="HScrollBar" type="HScrollBar" parent="."]
-offset_left = 64.0
-offset_top = 96.0
-offset_right = 392.0
-offset_bottom = 104.0

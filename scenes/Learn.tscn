@@ -54,7 +54,7 @@ selection = "res://scenes/lessons/Rewards.tscn"
 [node name="Environment" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
 layout_mode = 2
 theme = ExtResource("4_w63bk")
-text = "Environment
+text = "Environments
 "
 selection = "res://scenes/lessons/Environment.tscn"
 
@@ -63,6 +63,12 @@ layout_mode = 2
 theme = ExtResource("4_w63bk")
 text = "Policy and Value"
 selection = "res://scenes/lessons/PolicyAndValue.tscn"
+
+[node name="DynamicProgramming" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Dynamic Programming"
+selection = "res://scenes/lessons/DynamicProgramming.tscn"
 
 [node name="Door" type="TextureRect" parent="."]
 offset_left = 32.0
