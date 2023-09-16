@@ -54,7 +54,7 @@ layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_j2ega")
 bbcode_enabled = true
-text = "RL is based on the idea that we learn by interacting with our environment. Think of baby, for instance. It begins its life with very limited knowledge about the world and, through experimentation, learns sets of behaviors. It will put anything in its mouth - if something tastes bad, it will be avoided in the future, if it tastes good, it will look for it in the future. A key idea behind reinforcement learning is that we explore our environment and adopt certain behaviors in order to [wave]optimize our well being[/wave]
+text = "RL is based on the idea that we learn by interacting with our environment. Think of a baby, for instance. It begins its life with very limited knowledge about the world and, through experimentation, learns sets of behaviors. It will put anything in its mouth - if something tastes bad, it will be avoided in the future, if it tastes good, it will look for it in the future. A key idea behind reinforcement learning is that we explore our environment and adopt certain behaviors in order to [wave]optimize our well being[/wave]
 
 To replicate this idea computationally,  we need to define an agent's motivation. While humans are motivated in very complex ways by very different things, we adopt a model that is more easy to configure mathematically - an agent will receive numerical feedback signals called rewards as it explores its environment. [wave]The objective of an agent is to maximize its future reward[/wave]. You can draw an analogy between reward and the release of dopamine in a person's brain. Fundamentally, we want to learn how to act in the way that maximizes our happiness in the long run."
 fit_content = true
@@ -100,7 +100,7 @@ theme = ExtResource("3_j2ega")
 bbcode_enabled = true
 text = "Basically, we determine the agent's behavior through the modelling of rewards. [wave]We tell the agent what to do, not how to do it[/wave].
 
-Now, it's time to jump into the sandbox to play with the reward values and see how they affect the agen't behavior! Here's a couple of basic instructions.
+Now, it's time to jump into the sandbox to play with the reward values and see how they affect the agent's behavior! Here's a couple of basic instructions.
 
 First, you can open the blocks tab on the left to select blocks and click on the environment to place them around."
 fit_content = true

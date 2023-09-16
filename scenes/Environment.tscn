@@ -979,7 +979,7 @@ selection = "QLearning"
 
 [node name="LFA" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("10_ybhui")]
 layout_mode = 2
-text = "LFA"
+text = "LFA Q Learning"
 selection = "LFA QLearning"
 
 [node name="Rewards" parent="EnvironmentBuilder" instance=ExtResource("9_7qvop")]

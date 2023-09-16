@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://cc7no8hnfe10f"]
+
+[ext_resource type="Script" path="res://scenes/scripts/Lesson.gd" id="1_tak0v"]
+[ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="2_j8r2l"]
+[ext_resource type="Theme" uid="uid://dhymcf16h2rcx" path="res://resources/themes/impact_theme.tres" id="3_lo70u"]
+[ext_resource type="Theme" uid="uid://boy78iwy5tcum" path="res://resources/themes/lesson_theme.tres" id="4_esk5t"]
+[ext_resource type="Texture2D" uid="uid://tsjk6jlpb77e" path="res://resources/lessons/images/vdif.png" id="5_ewhkv"]
+[ext_resource type="Texture2D" uid="uid://blheycscpo40w" path="res://resources/lessons/images/TDestimate.png" id="6_pr0nl"]
+[ext_resource type="Texture2D" uid="uid://dlr7vaskx35w7" path="res://resources/lessons/images/TDD.png" id="7_2i17p"]
+[ext_resource type="FontFile" uid="uid://baq7wadp53op4" path="res://resources/fonts/Ranchers-v1/Ranchers-Regular.ttf" id="7_doxkn"]
+[ext_resource type="Texture2D" uid="uid://jgnoxgyd01g6" path="res://resources/lessons/images/TDUpdate.png" id="8_f0xfn"]
+[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/TransitionButton.gd" id="8_teyp0"]
+
+[node name="Lesson" type="Polygon2D"]
+position = Vector2(528, 0)
+polygon = PackedVector2Array(448, -16, 480, 560, 976, 560, 976, -16)
+script = ExtResource("1_tak0v")
+
+[node name="LessonShadow" type="Polygon2D" parent="."]
+show_behind_parent = true
+position = Vector2(-7, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(448, -16, 480, 560, 976, 560, 976, -16)
+
+[node name="Lessons" type="ScrollContainer" parent="."]
+clip_contents = false
+offset_left = 512.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 528.0
+mouse_filter = 0
+theme = ExtResource("2_j8r2l")
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Lessons"]
+custom_minimum_size = Vector2(424, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_lo70u")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Time Difference Methods"
+fit_content = true
+
+[node name="1" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_esk5t")
+bbcode_enabled = true
+text = "In the methods presented before, the agent basically learns by averaging out its past experiences and learning what to expect from them. Here, we present an alternative to this averaging method.
+
+Consider that there is a correct value function we will represent by V. What we compute is an approximation of V, represented by a V with a hat on. As such, the difference between our estimate and the true value in a given state can be given by:
+"
+fit_content = true
+
+[node name="2" type="TextureRect" parent="Lessons/VBox"]
+layout_mode = 2
+texture = ExtResource("5_ewhkv")
+stretch_mode = 3
+
+[node name="3" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_esk5t")
+bbcode_enabled = true
+text = "As such, if we knew D, we could easily find the true value function by adding it to our estimate.
+
+For this method, we estimate D for each step based on our existing estimate of V. For that, we use the estimate for the true value of V we explored in the DP lesson, which is the value of the resulting reward plus the value we estimate for the resulting state weighted by gamma."
+fit_content = true
+
+[node name="7" type="TextureRect" parent="Lessons/VBox"]
+layout_mode = 2
+texture = ExtResource("6_pr0nl")
+stretch_mode = 3
+
+[node name="8" type="TextureRect" parent="Lessons/VBox"]
+layout_mode = 2
+texture = ExtResource("7_2i17p")
+stretch_mode = 3
+
+[node name="6" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_esk5t")
+bbcode_enabled = true
+text = "Then, we can use this approximation of D to update V hat. The basic equation that we're using is:
+"
+fit_content = true
+
+[node name="4" type="TextureRect" parent="Lessons/VBox"]
+layout_mode = 2
+texture = ExtResource("8_f0xfn")
+stretch_mode = 3
+
+[node name="5" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_esk5t")
+bbcode_enabled = true
+text = "In which the greek letter, alpha, is our learning rate, which will determine how much we move towards our goal at each update. 
+
+This is the basic idea behind bootstrapping methods - [wave]we make updates based on existing estimates[/wave]. In this case, we are aiming for a an estimate of the V function based on our current value function. Our learning rate exists to account for the fact that our estimate isn't entirely accurate.
+
+The learning rate is used in multiple RL algorithms and is the most important concept to get from this implementation. Essentially, it says how much we trust our goal estimate compared to our current estimate.
+
+If alpha is 100%, the agent trusts the goal estimate completely and will ignore what it knew before - in this case, it assumes our estimate of the value function is completely accurate. If alpha is 0%, it will trust what it knows completely and will ignore what the goal estimate says - in this case, it completely ignores our estimate of the value function and keeps its estimate unchanged.
+
+To learn properly, the agent should start by putting more faith in its goal estimate than in its own knowledge, and slowly begin trusting what it knows to make decisions. As such, much like epsilon, alpha should begin as a number greater than 0 and slowly fall towards 0 through the course of multiple episodes. Alpha and the number of episodes until convergence can both be modified through the values menu.
+
+Now it's time to run some experiments! 
+
+- Run experiments with 0.0 alpha and 1.0 alpha. How does that affect learning?
+
+The Q learning and SARSA algorithms both fall under the umbrella of tabular TD learning and use the basic ideas presented here! To learn more about their implementation, take a look at the reference book or this application's source code."
+fit_content = true
+
+[node name="Sandbox" type="Button" parent="Lessons/VBox"]
+layout_mode = 2
+theme = ExtResource("2_j8r2l")
+theme_override_colors/font_hover_color = Color(1, 0.713726, 0, 1)
+theme_override_fonts/font = ExtResource("7_doxkn")
+text = "Experiment!"
+flat = true
+script = ExtResource("8_teyp0")
+transition_path = "res://scenes/experiments/TD.tscn"

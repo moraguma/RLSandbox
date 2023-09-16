@@ -1,0 +1,1135 @@
+[gd_scene load_steps=21 format=3 uid="uid://be76we7mda2aw"]
+
+[ext_resource type="TileSet" uid="uid://dmore66hiiyyo" path="res://resources/tilesets/Environment.tres" id="1_s0xv7"]
+[ext_resource type="Script" path="res://scenes/scripts/Environment.gd" id="2_bovle"]
+[ext_resource type="Texture2D" uid="uid://dbhm30ga75in" path="res://resources/sprites/agent.png" id="3_yybpy"]
+[ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="4_8amtg"]
+[ext_resource type="Script" path="res://scenes/scripts/ValueFunctionHolder.gd" id="5_bxw3x"]
+[ext_resource type="PackedScene" uid="uid://b1tfeofjravvu" path="res://scenes/ValueView.tscn" id="6_51uc4"]
+[ext_resource type="PackedScene" uid="uid://uo2xtu5qyjha" path="res://scenes/PolicyView.tscn" id="7_v3tcn"]
+[ext_resource type="Script" path="res://scenes/scripts/EnvironmentBuilder.gd" id="8_d1idx"]
+[ext_resource type="PackedScene" uid="uid://ejr6e87jlm2y" path="res://scenes/RightColapseMenu.tscn" id="9_smphp"]
+[ext_resource type="PackedScene" uid="uid://bsr4483dtngqb" path="res://scenes/TileButton.tscn" id="10_1jarn"]
+[ext_resource type="Texture2D" uid="uid://d274pyom4owob" path="res://resources/sprites/environment_tileset.png" id="11_al858"]
+[ext_resource type="Texture2D" uid="uid://7ohjh11hlusq" path="res://resources/sprites/objects_tileset.png" id="12_wxpo5"]
+[ext_resource type="PackedScene" uid="uid://br7toatf5kgsh" path="res://scenes/EditableSlider.tscn" id="13_vneq3"]
+[ext_resource type="PackedScene" uid="uid://c8xb0ug4n2f3n" path="res://scenes/ActionButton.tscn" id="14_mdr5r"]
+[ext_resource type="PackedScene" uid="uid://cl2qfv56pe53d" path="res://scenes/LeftColapseMenu.tscn" id="15_0hajy"]
+[ext_resource type="PackedScene" uid="uid://csew6g5jg7uo2" path="res://scenes/SelectionButton.tscn" id="16_gfypb"]
+[ext_resource type="Texture2D" uid="uid://ck2vbneo8g87j" path="res://resources/sprites/play.png" id="17_n56ff"]
+[ext_resource type="Texture2D" uid="uid://fu4kxuc8g80o" path="res://resources/sprites/stop.png" id="18_4sjxm"]
+[ext_resource type="Texture2D" uid="uid://dy6v6meyq0kpx" path="res://resources/sprites/door.png" id="19_apr12"]
+[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/TransitionButton.gd" id="20_bbeve"]
+
+[node name="Environment" type="TileMap"]
+tile_set = ExtResource("1_s0xv7")
+format = 2
+layer_0/name = "objects"
+layer_0/tile_data = PackedInt32Array(327688, 65537, 2, 196616, 65537, 3)
+layer_1/name = "environment"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(0, 0, 1, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 0, 1, 524288, 0, 1, 1, 0, 1, 65537, 0, 1, 131073, 0, 1, 196609, 0, 1, 262145, 0, 1, 327681, 0, 1, 393217, 0, 1, 458753, 0, 1, 524289, 0, 1, 2, 0, 1, 65538, 0, 1, 131074, 0, 1, 196610, 0, 1, 262146, 0, 1, 327682, 0, 1, 393218, 0, 1, 458754, 0, 1, 524290, 0, 1, 3, 0, 1, 65539, 0, 1, 131075, 0, 1, 196611, 0, 1, 262147, 0, 1, 327683, 0, 1, 393219, 0, 1, 458755, 0, 1, 524291, 0, 1, 4, 0, 1, 65540, 0, 1, 131076, 0, 1, 196612, 0, 1, 262148, 0, 1, 327684, 0, 1, 393220, 0, 1, 458756, 0, 1, 524292, 0, 1, 5, 0, 1, 65541, 0, 1, 131077, 0, 1, 196613, 0, 0, 262149, 0, 0, 327685, 0, 0, 393221, 0, 1, 458757, 0, 1, 524293, 0, 1, 6, 0, 1, 65542, 0, 1, 131078, 0, 1, 196614, 0, 0, 262150, 0, 1, 327686, 0, 0, 393222, 0, 1, 458758, 0, 1, 524294, 0, 1, 7, 0, 1, 65543, 0, 1, 131079, 0, 1, 196615, 0, 0, 262151, 0, 0, 327687, 0, 0, 393223, 0, 1, 458759, 0, 1, 524295, 0, 1, 8, 0, 1, 65544, 0, 1, 131080, 0, 1, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 1, 458760, 0, 1, 524296, 0, 1, 9, 0, 1, 65545, 0, 1, 131081, 0, 1, 196617, 0, 1, 327689, 0, 1, 393225, 0, 1, 458761, 0, 1, 524297, 0, 1, 10, 0, 1, 65546, 0, 1, 131082, 0, 1, 196618, 0, 1, 262154, 0, 1, 327690, 0, 1, 393226, 0, 1, 458762, 0, 1, 524298, 0, 1, 11, 0, 1, 65547, 0, 1, 131083, 0, 1, 196619, 0, 1, 262155, 0, 1, 327691, 0, 1, 393227, 0, 1, 458763, 0, 1, 524299, 0, 1, 12, 0, 1, 65548, 0, 1, 131084, 0, 1, 196620, 0, 1, 262156, 0, 1, 327692, 0, 1, 393228, 0, 1, 458764, 0, 1, 524300, 0, 1, 13, 0, 1, 65549, 0, 1, 131085, 0, 1, 196621, 0, 1, 262157, 0, 1, 327693, 0, 1, 393229, 0, 1, 458765, 0, 1, 524301, 0, 1, 14, 0, 1, 65550, 0, 1, 131086, 0, 1, 196622, 0, 1, 262158, 0, 1, 327694, 0, 1, 393230, 0, 1, 458766, 0, 1, 524302, 0, 1, 262153, 0, 1)
+script = ExtResource("2_bovle")
+
+[node name="Agent" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(96, 96)
+texture = ExtResource("3_yybpy")
+offset = Vector2(0, -32)
+
+[node name="Instructions" type="RichTextLabel" parent="."]
+visible = false
+offset_top = 499.0
+offset_right = 960.0
+offset_bottom = 531.0
+theme = ExtResource("4_8amtg")
+bbcode_enabled = true
+text = "[center][color=#ffb600]Q[/color] - Value function   [color=#ffb600]W[/color] - Policy   [color=#ffb600]Space[/color] - Reward graph"
+visible_characters = 34
+visible_ratio = 0.62963
+
+[node name="ValueFunction" type="Node2D" parent="."]
+visible = false
+script = ExtResource("5_bxw3x")
+
+[node name="1" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 128.0
+
+[node name="2" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 128.0
+
+[node name="3" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
+
+[node name="4" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 128.0
+
+[node name="5" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 128.0
+
+[node name="6" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 128.0
+
+[node name="7" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 512.0
+offset_bottom = 128.0
+
+[node name="8" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 64.0
+offset_right = 576.0
+offset_bottom = 128.0
+
+[node name="9" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 640.0
+offset_bottom = 128.0
+
+[node name="10" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 128.0
+
+[node name="11" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 64.0
+offset_right = 768.0
+offset_bottom = 128.0
+
+[node name="12" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 64.0
+offset_right = 832.0
+offset_bottom = 128.0
+
+[node name="13" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 64.0
+offset_right = 896.0
+offset_bottom = 128.0
+
+[node name="14" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 192.0
+
+[node name="15" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 192.0
+
+[node name="16" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 192.0
+
+[node name="17" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 192.0
+
+[node name="18" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 192.0
+
+[node name="19" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 448.0
+offset_bottom = 192.0
+
+[node name="20" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 192.0
+
+[node name="21" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 192.0
+
+[node name="22" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 192.0
+
+[node name="23" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 128.0
+offset_right = 704.0
+offset_bottom = 192.0
+
+[node name="24" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 128.0
+offset_right = 768.0
+offset_bottom = 192.0
+
+[node name="25" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 128.0
+offset_right = 832.0
+offset_bottom = 192.0
+
+[node name="26" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 128.0
+offset_right = 896.0
+offset_bottom = 192.0
+
+[node name="27" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 128.0
+offset_bottom = 256.0
+
+[node name="28" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 192.0
+offset_bottom = 256.0
+
+[node name="29" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="30" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 192.0
+offset_right = 320.0
+offset_bottom = 256.0
+
+[node name="31" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 256.0
+
+[node name="32" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 192.0
+offset_right = 448.0
+offset_bottom = 256.0
+
+[node name="33" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 512.0
+offset_bottom = 256.0
+
+[node name="34" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 192.0
+offset_right = 576.0
+offset_bottom = 256.0
+
+[node name="35" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 256.0
+
+[node name="36" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 192.0
+offset_right = 704.0
+offset_bottom = 256.0
+
+[node name="37" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 192.0
+offset_right = 768.0
+offset_bottom = 256.0
+
+[node name="38" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 832.0
+offset_bottom = 256.0
+
+[node name="39" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 192.0
+offset_right = 896.0
+offset_bottom = 256.0
+
+[node name="40" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 128.0
+offset_bottom = 320.0
+
+[node name="41" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 256.0
+offset_right = 192.0
+offset_bottom = 320.0
+
+[node name="42" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 256.0
+offset_bottom = 320.0
+
+[node name="43" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 320.0
+offset_bottom = 320.0
+
+[node name="44" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 320.0
+
+[node name="45" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+
+[node name="46" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 256.0
+offset_right = 512.0
+offset_bottom = 320.0
+
+[node name="47" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 576.0
+offset_bottom = 320.0
+
+[node name="48" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 320.0
+
+[node name="49" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 256.0
+offset_right = 704.0
+offset_bottom = 320.0
+
+[node name="50" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 256.0
+offset_right = 768.0
+offset_bottom = 320.0
+
+[node name="51" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 320.0
+
+[node name="52" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 256.0
+offset_right = 896.0
+offset_bottom = 320.0
+
+[node name="53" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 128.0
+offset_bottom = 384.0
+
+[node name="54" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 320.0
+offset_right = 192.0
+offset_bottom = 384.0
+
+[node name="55" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 320.0
+offset_right = 256.0
+offset_bottom = 384.0
+
+[node name="56" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 320.0
+offset_right = 320.0
+offset_bottom = 384.0
+
+[node name="57" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 320.0
+offset_right = 384.0
+offset_bottom = 384.0
+
+[node name="58" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 320.0
+offset_right = 448.0
+offset_bottom = 384.0
+
+[node name="59" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 320.0
+offset_right = 512.0
+offset_bottom = 384.0
+
+[node name="60" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 320.0
+offset_right = 576.0
+offset_bottom = 384.0
+
+[node name="61" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 384.0
+
+[node name="62" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 384.0
+
+[node name="63" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 320.0
+offset_right = 768.0
+offset_bottom = 384.0
+
+[node name="64" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 320.0
+offset_right = 832.0
+offset_bottom = 384.0
+
+[node name="65" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 320.0
+offset_right = 896.0
+offset_bottom = 384.0
+
+[node name="66" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 64.0
+offset_top = 384.0
+offset_right = 128.0
+offset_bottom = 448.0
+
+[node name="67" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 192.0
+offset_bottom = 448.0
+
+[node name="68" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 192.0
+offset_top = 384.0
+offset_right = 256.0
+offset_bottom = 448.0
+
+[node name="69" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 256.0
+offset_top = 384.0
+offset_right = 320.0
+offset_bottom = 448.0
+
+[node name="70" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 320.0
+offset_top = 384.0
+offset_right = 384.0
+offset_bottom = 448.0
+
+[node name="71" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 384.0
+offset_top = 384.0
+offset_right = 448.0
+offset_bottom = 448.0
+
+[node name="72" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 512.0
+offset_bottom = 448.0
+
+[node name="73" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 512.0
+offset_top = 384.0
+offset_right = 576.0
+offset_bottom = 448.0
+
+[node name="74" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 576.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 448.0
+
+[node name="75" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 704.0
+offset_bottom = 448.0
+
+[node name="76" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 704.0
+offset_top = 384.0
+offset_right = 768.0
+offset_bottom = 448.0
+
+[node name="77" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 768.0
+offset_top = 384.0
+offset_right = 832.0
+offset_bottom = 448.0
+
+[node name="78" parent="ValueFunction" instance=ExtResource("6_51uc4")]
+offset_left = 832.0
+offset_top = 384.0
+offset_right = 896.0
+offset_bottom = 448.0
+
+[node name="Policy" type="Node2D" parent="."]
+visible = false
+script = ExtResource("5_bxw3x")
+
+[node name="1" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 96)
+
+[node name="2" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 96)
+
+[node name="3" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 96)
+
+[node name="4" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 96)
+
+[node name="5" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 96)
+
+[node name="6" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 96)
+
+[node name="7" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 96)
+
+[node name="8" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 96)
+
+[node name="9" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 96)
+
+[node name="10" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 96)
+
+[node name="11" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 96)
+
+[node name="12" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 96)
+
+[node name="13" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 96)
+
+[node name="14" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 160)
+
+[node name="15" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 160)
+
+[node name="16" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 160)
+
+[node name="17" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 160)
+
+[node name="18" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 160)
+
+[node name="19" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 160)
+
+[node name="20" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 160)
+
+[node name="21" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 160)
+
+[node name="22" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 160)
+
+[node name="23" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 160)
+
+[node name="24" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 160)
+
+[node name="25" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 160)
+
+[node name="26" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 160)
+
+[node name="27" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 224)
+
+[node name="28" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 224)
+
+[node name="29" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 224)
+
+[node name="30" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 224)
+
+[node name="31" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 224)
+
+[node name="32" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 224)
+
+[node name="33" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 224)
+
+[node name="34" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 224)
+
+[node name="35" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 224)
+
+[node name="36" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 224)
+
+[node name="37" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 224)
+
+[node name="38" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 224)
+
+[node name="39" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 224)
+
+[node name="40" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 288)
+
+[node name="41" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 288)
+
+[node name="42" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 288)
+
+[node name="43" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 288)
+
+[node name="44" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 288)
+
+[node name="45" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 288)
+
+[node name="46" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 288)
+
+[node name="47" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 288)
+
+[node name="48" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 288)
+
+[node name="49" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 288)
+
+[node name="50" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 288)
+
+[node name="51" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 288)
+
+[node name="52" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 288)
+
+[node name="53" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 352)
+
+[node name="54" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 352)
+
+[node name="55" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 352)
+
+[node name="56" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 352)
+
+[node name="57" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 352)
+
+[node name="58" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 352)
+
+[node name="59" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 352)
+
+[node name="60" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 352)
+
+[node name="61" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 352)
+
+[node name="62" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 352)
+
+[node name="63" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 352)
+
+[node name="64" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 352)
+
+[node name="65" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 352)
+
+[node name="66" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(96, 416)
+
+[node name="67" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(160, 416)
+
+[node name="68" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(224, 416)
+
+[node name="69" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(288, 416)
+
+[node name="70" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(352, 416)
+
+[node name="71" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(416, 416)
+
+[node name="72" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(480, 416)
+
+[node name="73" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(544, 416)
+
+[node name="74" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(608, 416)
+
+[node name="75" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(672, 416)
+
+[node name="76" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(736, 416)
+
+[node name="77" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(800, 416)
+
+[node name="78" parent="Policy" instance=ExtResource("7_v3tcn")]
+position = Vector2(864, 416)
+
+[node name="EnvironmentBuilder" type="Node2D" parent="."]
+script = ExtResource("8_d1idx")
+learner_name = "Sarsa"
+
+[node name="BuildingArea" type="Control" parent="EnvironmentBuilder"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 544.0
+
+[node name="Blocks" parent="EnvironmentBuilder" instance=ExtResource("9_smphp")]
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Blocks"]
+offset_left = 3.0
+offset_top = 99.0
+offset_right = 81.0
+offset_bottom = 131.0
+rotation = -1.5708
+theme = ExtResource("4_8amtg")
+text = "Blocks"
+
+[node name="EmptyTile" parent="EnvironmentBuilder/Blocks" instance=ExtResource("10_1jarn")]
+position = Vector2(-224, 96)
+texture = ExtResource("11_al858")
+vframes = 2
+layer = 1
+
+[node name="WallTile" parent="EnvironmentBuilder/Blocks" instance=ExtResource("10_1jarn")]
+position = Vector2(-96, 96)
+texture = ExtResource("11_al858")
+vframes = 2
+frame = 1
+layer = 1
+atlas_coords = Vector2i(0, 1)
+
+[node name="Objects" parent="EnvironmentBuilder" instance=ExtResource("9_smphp")]
+
+[node name="Fold" parent="EnvironmentBuilder/Objects" index="2"]
+position = Vector2(0, 128)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Objects"]
+offset_left = 3.0
+offset_top = 232.0
+offset_right = 85.0
+offset_bottom = 264.0
+rotation = -1.5708
+theme = ExtResource("4_8amtg")
+text = "Objects"
+
+[node name="WinTile" parent="EnvironmentBuilder/Objects" instance=ExtResource("10_1jarn")]
+position = Vector2(-224, 96)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 7
+source_id = 1
+atlas_coords = Vector2i(1, 2)
+
+[node name="LoseTile" parent="EnvironmentBuilder/Objects" instance=ExtResource("10_1jarn")]
+position = Vector2(-96, 96)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 10
+source_id = 1
+atlas_coords = Vector2i(1, 3)
+
+[node name="Environment" parent="EnvironmentBuilder" instance=ExtResource("9_smphp")]
+
+[node name="Fold" parent="EnvironmentBuilder/Environment" index="2"]
+position = Vector2(0, 256)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Environment"]
+offset_left = 3.0
+offset_top = 360.0
+offset_right = 85.0
+offset_bottom = 392.0
+rotation = -1.5708
+theme = ExtResource("4_8amtg")
+text = "Env"
+horizontal_alignment = 1
+
+[node name="ShiftChance" parent="EnvironmentBuilder/Environment" instance=ExtResource("13_vneq3")]
+offset_left = -288.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 96.0
+max_value = 0.5
+value = 0.1
+property = "Shift chance"
+
+[node name="MaxSteps" parent="EnvironmentBuilder/Environment" instance=ExtResource("13_vneq3")]
+offset_left = -288.0
+offset_top = 128.0
+offset_right = -32.0
+offset_bottom = 192.0
+min_value = 5.0
+max_value = 100.0
+step = 5.0
+value = 50.0
+property = "Max steps"
+
+[node name="AllowedActions" type="Label" parent="EnvironmentBuilder/Environment"]
+offset_left = -320.0
+offset_top = 216.0
+offset_bottom = 248.0
+theme = ExtResource("4_8amtg")
+text = "Allowed actions"
+horizontal_alignment = 1
+
+[node name="LeftUp" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-224, 288)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 4
+action = Vector2i(-1, -1)
+
+[node name="Up" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-160, 288)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+action = Vector2i(0, -1)
+
+[node name="RightUp" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-96, 288)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 5
+action = Vector2i(1, -1)
+
+[node name="Left" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-224, 352)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 6
+action = Vector2i(-1, 0)
+
+[node name="Right" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-96, 352)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 3
+action = Vector2i(1, 0)
+
+[node name="LeftDown" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-224, 416)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 1
+action = Vector2i(-1, 1)
+
+[node name="Down" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-160, 416)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 9
+action = Vector2i(0, 1)
+
+[node name="RightDown" parent="EnvironmentBuilder/Environment" instance=ExtResource("14_mdr5r")]
+position = Vector2(-96, 416)
+texture = ExtResource("12_wxpo5")
+hframes = 3
+vframes = 4
+frame = 2
+action = Vector2i(1, 1)
+
+[node name="Algorithms" parent="EnvironmentBuilder" instance=ExtResource("15_0hajy")]
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Algorithms"]
+offset_left = -4.0
+offset_top = 3.0
+offset_right = 120.0
+offset_bottom = 35.0
+rotation = 1.5708
+theme = ExtResource("4_8amtg")
+text = "Learners"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnvironmentBuilder/Algorithms"]
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 576.0
+
+[node name="DP" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+layout_mode = 2
+text = "DP"
+selection = "DP"
+
+[node name="ADP" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+layout_mode = 2
+text = "ADP"
+selection = "ADP"
+
+[node name="MCES" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+layout_mode = 2
+text = "Monte Carlo ES"
+selection = "MCES"
+
+[node name="Sarsa" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+layout_mode = 2
+text = "SARSA"
+selection = "Sarsa"
+
+[node name="QLearning" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+layout_mode = 2
+text = "Q Learning"
+selection = "QLearning"
+
+[node name="LFA" parent="EnvironmentBuilder/Algorithms/VBoxContainer" instance=ExtResource("16_gfypb")]
+visible = false
+layout_mode = 2
+text = "LFA Q Learning"
+selection = "LFA QLearning"
+
+[node name="Rewards" parent="EnvironmentBuilder" instance=ExtResource("15_0hajy")]
+
+[node name="Fold" parent="EnvironmentBuilder/Rewards" index="2"]
+position = Vector2(0, 128)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Rewards"]
+offset_left = -4.0
+offset_top = 131.0
+offset_right = 120.0
+offset_bottom = 163.0
+rotation = 1.5708
+theme = ExtResource("4_8amtg")
+text = "Rewards"
+horizontal_alignment = 1
+
+[node name="BaseReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 288.0
+offset_bottom = 160.0
+min_value = -2.0
+max_value = 0.5
+value = -0.2
+property = "Base reward"
+
+[node name="WinReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 288.0
+offset_bottom = 288.0
+min_value = -1.0
+value = 1.0
+property = "Win reward"
+
+[node name="LoseReward" parent="EnvironmentBuilder/Rewards" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 352.0
+offset_right = 288.0
+offset_bottom = 416.0
+min_value = -1.0
+value = -1.0
+property = "Lose reward"
+
+[node name="Values" parent="EnvironmentBuilder" instance=ExtResource("15_0hajy")]
+
+[node name="Fold" parent="EnvironmentBuilder/Values" index="2"]
+position = Vector2(0, 256)
+
+[node name="Label" type="Label" parent="EnvironmentBuilder/Values"]
+offset_left = -4.0
+offset_top = 259.0
+offset_right = 120.0
+offset_bottom = 291.0
+rotation = 1.5708
+theme = ExtResource("4_8amtg")
+text = "Values
+"
+horizontal_alignment = 1
+
+[node name="Gamma" parent="EnvironmentBuilder/Values" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 288.0
+offset_bottom = 128.0
+value = 0.9
+property = "Gamma"
+
+[node name="StartingEpsilon" parent="EnvironmentBuilder/Values" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 168.0
+offset_right = 288.0
+offset_bottom = 232.0
+value = 0.9
+property = "Starting epsilon"
+
+[node name="StartingAlpha" parent="EnvironmentBuilder/Values" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 288.0
+offset_bottom = 336.0
+max_value = 0.99
+step = 0.01
+value = 0.1
+property = "Starting alpha"
+
+[node name="EpisodesToZero" parent="EnvironmentBuilder/Values" instance=ExtResource("13_vneq3")]
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 288.0
+offset_bottom = 440.0
+min_value = 10.0
+max_value = 1000.0
+step = 10.0
+value = 200.0
+property = "Eps to converge"
+
+[node name="Play" type="TextureButton" parent="."]
+offset_left = 864.0
+offset_top = 464.0
+offset_right = 928.0
+offset_bottom = 529.0
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("17_n56ff")
+texture_pressed = ExtResource("18_4sjxm")
+
+[node name="Door" type="TextureRect" parent="."]
+offset_left = 32.0
+offset_top = 464.0
+offset_right = 96.0
+offset_bottom = 528.0
+texture = ExtResource("19_apr12")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 465.0
+offset_right = 96.0
+offset_bottom = 529.0
+theme = ExtResource("4_8amtg")
+flat = true
+script = ExtResource("20_bbeve")
+transition_path = "res://scenes/Menu.tscn"
+
+[node name="SimulationSpeed" type="Label" parent="."]
+offset_left = 687.0
+offset_top = 12.0
+offset_right = 896.0
+offset_bottom = 44.0
+theme = ExtResource("4_8amtg")
+text = "SIMULATION SPEED"
+
+[node name="Slider" type="HSlider" parent="."]
+offset_left = 607.0
+offset_top = 24.0
+offset_right = 895.0
+offset_bottom = 88.0
+theme = ExtResource("4_8amtg")
+max_value = 1.0
+step = 0.01
+value = 0.83
+scrollable = false
+
+[connection signal="mouse_entered" from="EnvironmentBuilder/BuildingArea" to="EnvironmentBuilder" method="focus_building"]
+[connection signal="mouse_exited" from="EnvironmentBuilder/BuildingArea" to="EnvironmentBuilder" method="unfocus_building"]
+[connection signal="pressed" from="Play" to="." method="toggle_start"]
+
+[editable path="EnvironmentBuilder/Objects"]
+[editable path="EnvironmentBuilder/Environment"]
+[editable path="EnvironmentBuilder/Rewards"]
+[editable path="EnvironmentBuilder/Values"]

@@ -75,6 +75,18 @@ theme = ExtResource("4_w63bk")
 text = "Adaptive DP"
 selection = "res://scenes/lessons/AdaptiveDynamicProgramming.tscn"
 
+[node name="Monte Carlo" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Monte Carlo Methods"
+selection = "res://scenes/lessons/MonteCarloMethods.tscn"
+
+[node name="TimeDifference" parent="Lessons/VBox" instance=ExtResource("3_2bjo4")]
+layout_mode = 2
+theme = ExtResource("4_w63bk")
+text = "Time Difference Methods"
+selection = "res://scenes/lessons/TDMethods.tscn"
+
 [node name="Door" type="TextureRect" parent="."]
 offset_left = 32.0
 offset_top = 464.0

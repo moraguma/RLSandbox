@@ -50,9 +50,11 @@ theme = ExtResource("3_5ux6i")
 bbcode_enabled = true
 text = "In the past years, reinforcement learning has grown into one of the most important areas of study within machine learning. It has been proven efficient in many different applications, such as controlling vehicles, natural language processing and playing Atari games! One of the core ideas behind it is that it allows us to optimize problems we don't know a direct solution to.
 
-To achieve that RL uses stochastic methods to approximate functions that allow it to make decisions in given environments. In practice, the basics of programming these different methods isn't particularly difficult, as they only involve creating update rules to these functions based on the agent's interaction with its environment. However, though its not hard to understand the ideas behind how an agent learns, due to the high amount of possible states and actions we are usually working with, it can be very hard to visualize that learning process in any given environment.
+To achieve that, RL uses stochastic methods to approximate functions that allow it to make decisions in given environments. In practice, the basics of programming these different methods aren't particularly difficult, as they only involve creating update rules to these functions based on the agent's interaction with its environment. However, though its not hard to understand the ideas behind how an agent learns, due to the high amount of possible states and actions we are usually working with, it can be very hard to visualize that learning process in any given environment.
 
-RLSandbox was made to help create an intuitive understanding of how knowledge forms through from the piles of numbers the agent's are working with. It provides a modifiable environment with tools for visualizing the inner workings of different RL algorithms. Particularly, we will be working with a gridworld environment in which, most of the time, we want an agent to learn how to get to the goal and avoid the spikes."
+RLSandbox was made to help create an intuitive understanding of how knowledge forms from the piles of numbers the agents are working with. It aims to help aspiring programmers understand the algorithms behind RL and also help non-programmers understand the ideas behind how this kind of stuff really works, presenting this kind of AI less like a thinking being and more like the mathematical model it is. This is a simple application, but RL is used in much more complicated stuff, including ChatGPT!
+
+This application provides a modifiable environment with tools for visualizing the inner workings of different RL algorithms. Particularly, we will be working with a gridworld environment in which, most of the time, we want an agent to learn how to get to the goal and avoid the spikes."
 fit_content = true
 
 [node name="2" type="TextureRect" parent="Lessons/VBox"]
@@ -66,9 +68,12 @@ layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_5ux6i")
 bbcode_enabled = true
-text = "Finally, this lessons included here are meant as an introduction to the environment and a review of the reinforcement learning concepts that will be explored. Hopefully they can be useful for gaining an intuitive understanding of how RL works, but are not meant as a substitute for studying the topics. If you want to learn more about RL, I recommend the book Reinforcement Learning: An Introduction, Sutton and Barto, 2nd Edition, which I used as reference for a building this experiment.
+text = "Finally, the lessons included here are meant as an introduction to the environment and a review of the reinforcement learning concepts that will be explored. Hopefully, they can be useful for gaining an intuitive understanding of how RL works, but are not meant as a substitute for studying the topics. If you want to learn more about RL, I recommend the book Reinforcement Learning: An Introduction, Sutton and Barto, 2nd Edition, which I used as reference for building this application.
 
 The code for this program is publicly available on the git repository linked in this itch page, including the learning algorithms.
 
-Enjoy!"
+I have also published plenty of games on this itch page, as well as a game on Steam called Candle Prick! Consider checking my other projects out if you liked this one :)
+
+Enjoy!
+Moraguma"
 fit_content = true

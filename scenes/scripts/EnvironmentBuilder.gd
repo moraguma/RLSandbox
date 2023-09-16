@@ -68,9 +68,10 @@ func _ready():
 		tile_button.connect("select", select_tile)
 	
 	for learner_button in learner_buttons:
-		if learner_button.selection == learner_name:
-			learner_button._pressed()
-		learner_button.connect("select", select_learner)
+		if learner_button != null:
+			if learner_button.selection == learner_name:
+				learner_button._pressed()
+			learner_button.connect("select", select_learner)
 	
 	for property_slider in property_sliders:
 		update_property(property_slider.property, property_slider.value)
@@ -111,7 +112,8 @@ func get_learner():
 
 func select_learner(learner):
 	for learner_button in learner_buttons:
-		learner_button.deselect()
+		if learner_button != null:
+			learner_button.deselect()
 	
 	learner_name = learner
 	
@@ -121,10 +123,11 @@ func select_learner(learner):
 func organize_learner_properties():
 	var valid_sliders = LEARNER_VALID_PROPERTIES[learner_name]
 	for i in range(len(valid_sliders)):
-		if valid_sliders[i]:
-			learner_property_sliders[i].show()
-		else:
-			learner_property_sliders[i].hide()
+		if learner_property_sliders[i] != null:
+			if valid_sliders[i]:
+				learner_property_sliders[i].show()
+			else:
+				learner_property_sliders[i].hide()
 
 
 func select_tile(tile_info):

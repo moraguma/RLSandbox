@@ -175,6 +175,8 @@ func is_tile_playable(tile: Vector2i) -> bool:
 
 
 func start():
+	SoundController.play_sfx("Click")
+	
 	agent_sprite.show()
 	
 	running = true
@@ -202,6 +204,8 @@ func start():
 
 
 func stop():
+	SoundController.play_sfx("Click")
+	
 	play_button.set_pressed_no_signal(false)
 	agent_sprite.hide()
 	

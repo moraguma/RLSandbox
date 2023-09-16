@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://cks37oubvv72t"]
+
+[ext_resource type="Script" path="res://scenes/scripts/Lesson.gd" id="1_f1rau"]
+[ext_resource type="Theme" uid="uid://dpvfhrd6522wp" path="res://resources/themes/main_theme.tres" id="2_7ntqd"]
+[ext_resource type="Theme" uid="uid://dhymcf16h2rcx" path="res://resources/themes/impact_theme.tres" id="3_dxniq"]
+[ext_resource type="Theme" uid="uid://boy78iwy5tcum" path="res://resources/themes/lesson_theme.tres" id="4_im13k"]
+[ext_resource type="FontFile" uid="uid://baq7wadp53op4" path="res://resources/fonts/Ranchers-v1/Ranchers-Regular.ttf" id="6_g65i0"]
+[ext_resource type="Script" path="res://addons/jam_essentials/scenes/scripts/TransitionButton.gd" id="7_qmidp"]
+
+[node name="Lesson" type="Polygon2D"]
+position = Vector2(528, 0)
+polygon = PackedVector2Array(448, -16, 480, 560, 976, 560, 976, -16)
+script = ExtResource("1_f1rau")
+
+[node name="LessonShadow" type="Polygon2D" parent="."]
+show_behind_parent = true
+position = Vector2(-7, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(448, -16, 480, 560, 976, 560, 976, -16)
+
+[node name="Lessons" type="ScrollContainer" parent="."]
+clip_contents = false
+offset_left = 512.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 528.0
+mouse_filter = 0
+theme = ExtResource("2_7ntqd")
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Lessons"]
+custom_minimum_size = Vector2(424, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_dxniq")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Time Difference Methods"
+fit_content = true
+
+[node name="1" type="RichTextLabel" parent="Lessons/VBox"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_im13k")
+bbcode_enabled = true
+text = "In the past lessons we learned how to estimate the value function by directly estimating the expected future reward for each state-action pair, either through information given by the environment (DP), or a model built by the agent through exploration (ADP). This works well for simpler environments, including our sandbox! However, consider that RL can be applied in environments with millions, billions or even more states! In practice, building a complete model of more complicated environments can be inneficient in terms of memory, or take way too long to give us useful information. As such, from now on we will explore algorithms capable of deriving an effective policy without the use of a model of the environment.
+
+In the method presented in this lesson, we are still looking for a value function we can use to derive an optimal policy from. Remember that a value function is simply the expected reward over time for each state or state-action pair. If we know the action value function, we know how much reward we can expect from performing a specific action in a specific state, and can thus choose actions accordingly.
+
+The Monte-Carlo method proposes we directly calculate the expected reward by averaging the values found over multiple episodes. To find this we can run an entire episode adding up our cummulative rewards and then go back through the states we passed, updating this average as we go.
+
+For example, say we go through state A, B and C, getting 1,2 and 3 reward, respectively, before ending the episode. Then, if we add up all the rewards through the episode we get 6. Now, if we go back, we can find that
+
+[center]After C we got 6 - 1 - 2 - 3 = 0 reward
+After B we got 6 - 2 - 1 = 3 reward
+After A we got 6 - 1 = 5 reward[/center]
+
+If we keep doing this for many episodes, we can average these values to get an approximation of our expected future reward per state that gets more accurate the more experiments we run! In practice, we also weigh those rewards using gamma to prioritize rewards that will be gotten sooner.
+
+Then, we can simply use this approximation as our value function! Effectively, we are using the average of our future reward to decide between actions. Say, for instance, we are in state A and have a choice between actions X and Y. Through our past experiences, we know that X wields an average future reward of -0.5 and Y, of 2.0. Then, we should choose Y to optimize our future reward!
+
+Episilon and gamma have the same purpose here as they do in past methods.
+
+Now it's time to run some experiments!
+
+- Look at the value functions using the key Q while running the Monte Carlo algorithm. Notice how they only update once the agent finishes an episode?"
+fit_content = true
+
+[node name="Sandbox" type="Button" parent="Lessons/VBox"]
+layout_mode = 2
+theme = ExtResource("2_7ntqd")
+theme_override_colors/font_hover_color = Color(1, 0.713726, 0, 1)
+theme_override_fonts/font = ExtResource("6_g65i0")
+text = "Experiment!"
+flat = true
+script = ExtResource("7_qmidp")
+transition_path = "res://scenes/experiments/MonteCarlo.tscn"
