@@ -69,7 +69,7 @@ layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_ty2qw")
 bbcode_enabled = true
-text = "The way we learn policies is through the use of[wave] state value functions[/wave]. Essentially, they give us a value for each state the agent can be in, which represents how much reward we can expect to gain in the long run from being in each state. It follows, then, that states close to the goal have a higher value than states farther away from it.
+text = "One way we learn policies is through the use of[wave] state value functions[/wave]. Essentially, they give us a value for each state the agent can be in, which represents how much reward we can expect to gain in the long run from being in each state. It follows, then, that states close to the goal have a higher value than states farther away from it.
 
 State value functions presume that we have a policy that we're working with, since it's impossible to determine how good being in a state is without knowing what we're gonna do once we're in it.
 
