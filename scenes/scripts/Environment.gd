@@ -118,14 +118,15 @@ func _process(delta):
 		
 		var frames_per_iteration = MAX_FRAMES_PER_ITERATION - (MAX_FRAMES_PER_ITERATION - MIN_FRAMES_PER_ITERATION) * speed_slider.value
 		
-		frames_passed += 1
-		if frames_passed >= frames_per_iteration:
-			frames_passed = 0
-			
-			var iterations_counted = 0
-			while iterations_counted < 1:
-				_iterate_algorithm()
-				iterations_counted += frames_per_iteration
+		if speed_slider.value > 0:
+			frames_passed += 1
+			if frames_passed >= frames_per_iteration:
+				frames_passed = 0
+				
+				var iterations_counted = 0
+				while iterations_counted < 1:
+					_iterate_algorithm()
+					iterations_counted += frames_per_iteration
 	
 	if Input.is_action_just_pressed("value_function"):
 		value_function_holder.show()
@@ -340,6 +341,14 @@ func reset_episode():
 # --------------------------------------------------------------------------------------------------
 # VISUALIZATION
 # --------------------------------------------------------------------------------------------------
+
+func down_space_button():
+	DataVisualizer.turn_on()
+
+
+func up_space_button():
+	DataVisualizer.turn_off()
+
 
 func reset_value_view():
 	for value_view in value_function_holder.get_children():

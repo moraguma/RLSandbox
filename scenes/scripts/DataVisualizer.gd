@@ -33,12 +33,10 @@ func _ready():
 
 
 func _process(delta):
-	if viewable:
-		if Input.is_action_just_pressed("graph"):
-			show()
-			chart.queue_redraw()
-		if Input.is_action_just_released("graph"):
-			hide()
+	if Input.is_action_just_pressed("graph"):
+		turn_on()
+	if Input.is_action_just_released("graph"):
+		turn_off()
 
 
 func add_function(f: Function):
@@ -56,3 +54,14 @@ func reset_functions(f: Function):
 	fx = []
 	chart = null
 	add_function(f)
+
+
+func turn_on():
+	if viewable:
+		show()
+		chart.queue_redraw()
+
+
+func turn_off():
+	if viewable:
+		hide()

@@ -52,6 +52,29 @@ text = "[center][color=#ffb600]Q[/color] - Value function   [color=#ffb600]W[/co
 visible_characters = 34
 visible_ratio = 0.62963
 
+[node name="Q" type="Button" parent="Instructions"]
+offset_top = -19.0
+offset_right = 192.0
+offset_bottom = 45.0
+theme = ExtResource("4_mqq5a")
+flat = true
+
+[node name="W" type="Button" parent="Instructions"]
+offset_left = 192.0
+offset_top = -19.0
+offset_right = 320.0
+offset_bottom = 45.0
+theme = ExtResource("4_mqq5a")
+flat = true
+
+[node name="Space" type="Button" parent="Instructions"]
+offset_left = 320.0
+offset_top = -19.0
+offset_right = 576.0
+offset_bottom = 45.0
+theme = ExtResource("4_mqq5a")
+flat = true
+
 [node name="ValueFunction" type="Node2D" parent="."]
 visible = false
 script = ExtResource("5_11a6o")
