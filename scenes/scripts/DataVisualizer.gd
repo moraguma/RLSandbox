@@ -52,7 +52,9 @@ func add_function(f: Function):
 
 func reset_functions(f: Function):
 	fx = []
-	chart = null
+	if chart != null:
+		chart.queue_free()
+		chart = null
 	add_function(f)
 
 

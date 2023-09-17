@@ -53,6 +53,7 @@ visible_characters = 34
 visible_ratio = 0.62963
 
 [node name="Q" type="Button" parent="Instructions"]
+layout_mode = 0
 offset_top = -19.0
 offset_right = 192.0
 offset_bottom = 45.0
@@ -60,6 +61,7 @@ theme = ExtResource("4_y11x1")
 flat = true
 
 [node name="W" type="Button" parent="Instructions"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = -19.0
 offset_right = 320.0
@@ -68,6 +70,7 @@ theme = ExtResource("4_y11x1")
 flat = true
 
 [node name="Space" type="Button" parent="Instructions"]
+layout_mode = 0
 offset_left = 320.0
 offset_top = -19.0
 offset_right = 576.0
